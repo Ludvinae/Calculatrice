@@ -5,12 +5,15 @@ import exception.OperateurInconnu;
 import utils.ComposantsValeur;
 
 import java.util.Objects;
-
-
+    // la class Operation permet de sélection en fonction de l'opérateur la bonne implémentation de calcul
 public class Operation {
 
     private ComposantsValeur input;
 
+        /**
+         * Constructeur de la class Operation prend une input en paramètre de type ComposantsValeur
+         * @param : input
+         */
     public Operation(ComposantsValeur input) {
         this.input = input;
     }
