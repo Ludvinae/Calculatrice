@@ -19,7 +19,7 @@ public class Manager {
      * Method getExpression va permettre de récupérer l'expression de l'utilisateur
      * @return String expression
      */
-    public String getExpression() {
+    private String getExpression() {
         String expression = scanner.demanderExpression();
         scanner.fermerScanner();
 
@@ -30,7 +30,7 @@ public class Manager {
      * Method Interpret va permettre d'interpréter l'expression donnée par l'utilisateur.
      * @return ComposantValeur
      */
-    public ComposantsValeur interpret() {
+    private ComposantsValeur interpret() {
         String ex = getExpression();
         Interpreteur interpret = new Interpreteur(ex);
         ComposantsString composants = interpret.separerComposants();
@@ -42,7 +42,7 @@ public class Manager {
      * @param : composant
      * @return resultat en double
      */
-    public double appelCalculer(ComposantsValeur composant) {
+    private double appelCalculer(ComposantsValeur composant) {
         Operation operation = new Operation(composant);
         return operation.getResult();
     }
@@ -52,7 +52,7 @@ public class Manager {
      * @param : result
      * @param : composant
      */
-    public void appelAffichage(double result, ComposantsValeur composant) {
+    private void appelAffichage(double result, ComposantsValeur composant) {
         Affichage display = new Affichage(result, composant);
         display.afficher();
     }

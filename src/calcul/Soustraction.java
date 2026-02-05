@@ -1,6 +1,6 @@
 package calcul;
 
-public class Substraction implements IMath{
+public class Soustraction implements IMath{
     // Substraction implements IMath et va récupérer ses propriétés et méthods.
     private double valeur1;
     private double valeur2;
@@ -10,7 +10,7 @@ public class Substraction implements IMath{
      * @param : valeur1
      * @param : valeur2
      */
-    public Substraction(double valeur1, double valeur2) {
+    public Soustraction(double valeur1, double valeur2) {
         this.valeur1 = valeur1;
         this.valeur2 = valeur2;
     }

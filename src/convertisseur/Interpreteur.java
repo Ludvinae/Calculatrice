@@ -1,9 +1,7 @@
 package convertisseur;
 
-import calcul.Addition;
 import utils.ComposantsString;
 import utils.ComposantsValeur;
-import utils.Regex;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,7 +23,7 @@ public class Interpreteur {
          * @return Constructeur pour le record ComposantsString
          */
     public ComposantsString separerComposants() {
-        String regex = Regex.getPattern();
+        String regex = "^\\s*([+-]?\\d+(?:\\.\\d+)?)\\s*([+\\-*/])\\s*([+-]?\\d+(?:\\.\\d+)?)\\s*$";
         Pattern pattern = Pattern.compile(regex);
         Matcher m = pattern.matcher(expression);
         // Commande indispensable pour que les groupes fonctionnent

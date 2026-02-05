@@ -24,13 +24,4 @@ public class Addition implements IMath{
         return valeur1 + valeur2;
     }
 
-    // Mise en place des Setters pour Tests
-
-    public void setValeur1(double valeur1) {
-        this.valeur1 = valeur1;
-    }
-
-    public void setValeur2(double valeur2) {
-        this.valeur2 = valeur2;
-    }
 }

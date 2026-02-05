@@ -1,7 +1,6 @@
 package convertisseur;
 
 import calcul.*;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import utils.ComposantsValeur;
@@ -41,7 +40,7 @@ public class TestOperation {
         // Act
         result = operation2.getOperator();
         // Assert
-        assertTrue(result instanceof Substraction);
+        assertTrue(result instanceof Soustraction);
     }
 
     // Le test 3 vérifie que Operation renvoie bien un objet Multiplication pour une multiplication
