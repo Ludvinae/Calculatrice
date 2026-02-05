@@ -75,7 +75,7 @@ out/
 .idea_modules/
 .idea/*
 *.iml
-Calculatrice.iml
+./Calculatrice.iml
 # JIRA plugin
 atlassian-ide-plugin.xml
 
