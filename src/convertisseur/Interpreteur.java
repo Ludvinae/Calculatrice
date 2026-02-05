@@ -35,6 +35,7 @@ public class Interpreteur {
             c = new ComposantsString(m.group(1), m.group(2), m.group(3));
         } catch (IllegalStateException e){
             System.out.println(e.getMessage());
+            System.out.println("Impossible de séparer l'expression en trois composants.");
             c = null;
         }
         return c;
