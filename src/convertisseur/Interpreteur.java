@@ -7,7 +7,7 @@ import utils.Regex;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-    // la class Interpreteur va servir interpreter l'expression et la convertir en formule Mathématique
+    // la class Interpreteur va permettre d'interpréter l'expression et la convertir en formule Mathématique
 public class Interpreteur {
 
     private String expression;
@@ -21,14 +21,14 @@ public class Interpreteur {
     }
 
         /**
-         * Methods qui va permettre de séparer les différents composants de l'expression en trois groupes
+         * Methods qui permet de séparer les différents composants de l'expression en trois groupes
          * @return Constructeur pour le record ComposantsString
          */
     public ComposantsString separerComposants() {
         String regex = Regex.getPattern();
         Pattern pattern = Pattern.compile(regex);
         Matcher m = pattern.matcher(expression);
-        // Commande indispensable pour que les groupes fonctionnent wtf
+        // Commande indispensable pour que les groupes fonctionnent
         m.matches();
         ComposantsString c;
         try {

@@ -21,6 +21,7 @@ public class Division implements IMath {
 
     /**
      * Méthod qui permet de diviser la valeur1 par la valeur2.
+     * Si division par 0 remonte l'erreur jusqu'au manager.
      * @return résultat en double.
      */
     @Override
