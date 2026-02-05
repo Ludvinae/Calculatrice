@@ -11,7 +11,7 @@ public class VerifierExpression {
      * Methods qui vérifie l'expression et les éventuelles erreurs et renvoyant l'exception adéquate
      * @param : expression
      */
-    public static void verifierExpression(String expression) {
+    protected static void verifierExpression(String expression) {
         if (!verifierOperateur(expression)) throw new OperateurInconnu("Il manque un opéraeur valide a l'expression entrée.");
         if (verifierVirgule(expression)) throw new AlaisException("Veuillez utiliser un point à la place de la virgule pour séparer les décimales.");
         if (!verifierValeurNumeriques(expression)) throw new ValeurNonNumerique("L'expression doit contenir uniquement des valeurs numériques et l'opérateur.");
@@ -23,7 +23,7 @@ public class VerifierExpression {
      * @param : expression
      * @return Boolean
      */
-    public static boolean verifierFormat(String expression) {
+    private static boolean verifierFormat(String expression) {
         return expression.matches("^(\\s*(-\\s*)?\\d+(\\.\\d+)?\\s*)(\\+|-|\\*|/)(\\s*-?\\s*\\d+(\\.\\d+)?\\s*)$");
     }
 
@@ -32,7 +32,7 @@ public class VerifierExpression {
      * @param : expression
      * @return Boolean
      */
-    public static boolean verifierValeurNumeriques(String expression) {
+    private static boolean verifierValeurNumeriques(String expression) {
         return expression.matches("^[\\d\\.\\s\\+\\-\\*\\/]*$");
     }
 
@@ -41,7 +41,7 @@ public class VerifierExpression {
      * @param : expression
      * @return Boolean
      */
-    public static boolean verifierOperateur(String expression) {
+    private static boolean verifierOperateur(String expression) {
         return expression.matches("^.+(\\+|\\-|\\*|\\/).*$");
     }
 
@@ -50,7 +50,7 @@ public class VerifierExpression {
      * @param : expression
      * @return Boolean
      */
-    public static boolean verifierVirgule(String expression) {
+    private static boolean verifierVirgule(String expression) {
         if (expression.contains(",")) return true;
         return false;
     }
