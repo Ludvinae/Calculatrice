@@ -23,7 +23,7 @@ public class Operation {
         if (Objects.equals(input.operateur(), "-")) return new Substraction(input.valeur1(), input.valeur2());
         if (Objects.equals(input.operateur(), "*")) return new Multiplication(input.valeur1(), input.valeur2());
         if (Objects.equals(input.operateur(), "/")) return new Division(input.valeur1(), input.valeur2());
-        throw new OperateurInconnu("Veuillez utiliser +, -, * ou /");
+        throw new OperateurInconnu("Il manque un opéraeur valide a l'expression entrée.");
     }
 
     public double getResult()  {

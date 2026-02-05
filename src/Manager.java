@@ -1,6 +1,7 @@
 import convertisseur.Interpreteur;
 import convertisseur.Operation;
 import exception.DivisionParZero;
+import exception.OperateurInconnu;
 import scanner.Scanner;
 import sortie.Affichage;
 import utils.ComposantsString;
@@ -45,7 +46,7 @@ public class Manager {
             double result = appelCalculer(composant);
             appelAffichage(result, composant);
         }
-        catch(DivisionParZero e) {
+        catch(DivisionParZero | OperateurInconnu e) {
             System.out.println(e.getMessage());
         }
     }
