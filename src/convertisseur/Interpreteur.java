@@ -7,15 +7,23 @@ import utils.Regex;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+    // la class Interpreteur va servir interpreter l'expression et la convertir en formule Mathématique
 public class Interpreteur {
 
     private String expression;
 
+        /**
+         * Constructeur de la class Interpreteur prend une expression en paramètre de type String
+         * @param : expression
+         */
     public Interpreteur(String expression) {
         this.expression = expression;
     }
 
+        /**
+         * Methods qui va permettre de séparer les différents composants de l'expression en trois groupes
+         * @return Constructeur pour le record ComposantsString
+         */
     public ComposantsString separerComposants() {
         String regex = Regex.getPattern();
         Pattern pattern = Pattern.compile(regex);
@@ -32,6 +40,11 @@ public class Interpreteur {
         return c;
     }
 
+        /**
+         * Methods qui va permettre de générer la formule mathématique prend en paramètre un objet ComposantsString
+         * @param : composant
+         * @return constructeur pour le record ComposantsValeur
+         */
     public ComposantsValeur genererFormule(ComposantsString composant) {
         Double valeur1 = Double.parseDouble(composant.valeur1());
         Double valeur2 = Double.parseDouble(composant.valeur2());
