@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import utils.ComposantsString;
+import utils.ComposantsValeur;
 
 public class TestInterpreteur {
     private Interpreteur interpreteur1;
@@ -20,6 +21,8 @@ public class TestInterpreteur {
         this.interpreteur4 = new Interpreteur("-4/50");
         this.interpreteur5 = new Interpreteur("82--3.5");
     }
+
+    // Test sur la méthode separerElement()
 
     // Le test 1 vérifie que Interpreteru sépare bien l'expression en trois
     @Test
@@ -74,5 +77,20 @@ public class TestInterpreteur {
         result = interpreteur5.separerComposants();
         // Assert
         Assert.assertEquals("L'expression devrait être séparée en trois: 82, -, -3.5", new ComposantsString("82","-","-3.5"), result);
+    }
+
+    // Test sur la méthode genererFormule()
+
+    // Le test vérifie que Interpreteur transforme bien les trois composants de l'expression en ComposantsValeur
+    @Test
+    public void testGenererFormule() {
+        // Arrange
+        ComposantsString parametre;
+        ComposantsValeur result;
+        // Act
+        parametre = interpreteur1.separerComposants();
+        result = interpreteur1.genererFormule(parametre);
+        // Assert
+        Assert.assertEquals("Le ComposantsString devrait être transformé en ComposantsValeur(4d,'-',50d)", new ComposantsValeur(4d, "-", 50d), result);
     }
 }
