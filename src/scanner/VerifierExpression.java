@@ -28,6 +28,7 @@ public class VerifierExpression {
     }
 
     public static boolean verifierVirgule(String expression) {
-        return expression.matches(",");
+        if (expression.contains(",")) return true;
+        return false;
     }
 }
