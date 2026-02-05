@@ -22,7 +22,7 @@ public class Operation {
          * Method qui sélectionne la class implémentée par IMath adéquate pour le calcul
          * @return objet IMath
          */
-    protected IMath getOperator() {
+    protected IMath getOperateur() {
         if (Objects.equals(input.operateur(), "+")) return new Addition(input.valeur1(), input.valeur2());
         if (Objects.equals(input.operateur(), "-")) return new Soustraction(input.valeur1(), input.valeur2());
         if (Objects.equals(input.operateur(), "*")) return new Multiplication(input.valeur1(), input.valeur2());
@@ -34,8 +34,8 @@ public class Operation {
          * Methods qui permet d'obtenir un résultat en fonction de l'opération choisi par getOperator
          * @return resultat en double
          */
-    public double getResult()  {
-        IMath calcul = getOperator();
+    public double getResultat()  {
+        IMath calcul = getOperateur();
         return calcul.calculer();
     }
 }

@@ -23,44 +23,44 @@ public class TestOperation {
 
     // Le test 1 vérifie que Operation renvoie bien un objet Addition pour une addition
     @Test
-    public void testGetOperator1() {
+    public void testGetOperateur1() {
         // Arrange
         IMath result;
         // Act
-        result = operation1.getOperator();
+        result = operation1.getOperateur();
         // Assert
         assertTrue(result instanceof Addition);
     }
 
     // Le test 2 vérifie que Operation renvoie bien un objet Soustraction pour une soustraction
     @Test
-    public void testGetOperator2() {
+    public void testGetOperateur2() {
         // Arrange
         IMath result;
         // Act
-        result = operation2.getOperator();
+        result = operation2.getOperateur();
         // Assert
         assertTrue(result instanceof Soustraction);
     }
 
     // Le test 3 vérifie que Operation renvoie bien un objet Multiplication pour une multiplication
     @Test
-    public void testGetOperator3() {
+    public void testGetOperateur3() {
         // Arrange
         IMath result;
         // Act
-        result = operation3.getOperator();
+        result = operation3.getOperateur();
         // Assert
         assertTrue(result instanceof Multiplication);
     }
 
     // Le test 4 vérifie que Operation renvoie bien un objet Division pour une division
     @Test
-    public void testGetOperator4() {
+    public void testGetOperateur4() {
         // Arrange
         IMath result;
         // Act
-        result = operation4.getOperator();
+        result = operation4.getOperateur();
         // Assert
         assertTrue(result instanceof Division);
     }

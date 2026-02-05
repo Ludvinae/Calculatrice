@@ -30,11 +30,11 @@ public class Manager {
      * Method Interpret va permettre d'interpréter l'expression donnée par l'utilisateur.
      * @return ComposantValeur
      */
-    private ComposantsValeur interpret() {
+    private ComposantsValeur interprete() {
         String ex = getExpression();
-        Interpreteur interpret = new Interpreteur(ex);
-        ComposantsString composants = interpret.separerComposants();
-        return interpret.genererFormule(composants);
+        Interpreteur interprete = new Interpreteur(ex);
+        ComposantsString composants = interprete.separerComposants();
+        return interprete.genererFormule(composants);
     }
 
     /**
@@ -44,7 +44,7 @@ public class Manager {
      */
     private double appelCalculer(ComposantsValeur composant) {
         Operation operation = new Operation(composant);
-        return operation.getResult();
+        return operation.getResultat();
     }
 
     /**
@@ -61,7 +61,7 @@ public class Manager {
      * Method calculatrice est le point d'entrée du programme.
      */
     public void calculatrice() {
-        ComposantsValeur composant = interpret();
+        ComposantsValeur composant = interprete();
 
         try {
             double result = appelCalculer(composant);
