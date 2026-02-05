@@ -3,7 +3,7 @@ package sortie;
 import utils.ComposantsValeur;
 
 import java.text.DecimalFormat;
-
+    // La class Affichage permet d'afficher le résultat dans la console avec la bonne mise en forme.
 public class Affichage {
 
     private double result;
@@ -11,6 +11,11 @@ public class Affichage {
     private double valeur2;
     private String operateur;
 
+        /**
+         * Constructeur de la class Affichage prend un double resultat et un ComposantsValeur expression en paramètre.
+         * @param : result
+         * @param : expression
+         */
     public Affichage(double result, ComposantsValeur expression) {
         this.result = result;
         this.valeur1 = expression.valeur1();
@@ -18,6 +23,9 @@ public class Affichage {
         this.operateur = expression.operateur();
     }
 
+        /**
+         * Methods afficher va afficher dans la console le résultat avec la bonne mise en forme.
+         */
     public void afficher() {
         DecimalFormat df = new DecimalFormat();
         String expression = df.format(valeur1) + " " + operateur + " " + df.format(valeur2) + " = ";
