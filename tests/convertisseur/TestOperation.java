@@ -1,6 +1,7 @@
 package convertisseur;
 
 import calcul.*;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import utils.ComposantsValeur;
@@ -20,6 +21,8 @@ public class TestOperation {
         this.operation3 = new Operation(new ComposantsValeur(1d, "*", 2d));
         this.operation4 = new Operation(new ComposantsValeur(1d, "/", 2d));
     }
+
+    // Test sur la méthode getOperateur()
 
     // Le test 1 vérifie que Operation renvoie bien un objet Addition pour une addition
     @Test
@@ -63,5 +66,51 @@ public class TestOperation {
         result = operation4.getOperateur();
         // Assert
         assertTrue(result instanceof Division);
+    }
+
+    // Test sur la méthode getResult()
+
+    // Le test 1 vérifie que Operation renvoie bien le résultat attendu pour une addition
+    @Test
+    public void testGetResult1() {
+        // Arrange
+        double result;
+        // Act
+        result = operation1.getResultat();
+        // Assert
+        Assert.assertEquals("Devrait renvoyer l'addition de 1 et 2 donc 3", 3, result, 0);
+    }
+
+    // Le test 2 vérifie que Operation renvoie bien le résultat attendu pour une soustraction
+    @Test
+    public void testGetResult2() {
+        // Arrange
+        double result;
+        // Act
+        result = operation2.getResultat();
+        // Assert
+        Assert.assertEquals("Devrait renvoyer la soustraction de 1 et 2 donc -1", -1, result, 0);
+    }
+
+    // Le test 3 vérifie que Operation renvoie bien le résultat attendu pour une multiplication
+    @Test
+    public void testGetResult3() {
+        // Arrange
+        double result;
+        // Act
+        result = operation3.getResultat();
+        // Assert
+        Assert.assertEquals("Devrait renvoyer la multiplication de 1 et 2 donc 2", 2, result, 0);
+    }
+
+    // Le test 4 vérifie que Operation renvoie bien le résultat pour une division
+    @Test
+    public void testGetResult4() {
+        // Arrange
+        double result;
+        // Act
+        result = operation4.getResultat();
+        // Assert
+        Assert.assertEquals("Devrait renvoyer la division de 1 et 2 donc 0.5", 0.5, result, 0);
     }
 }
