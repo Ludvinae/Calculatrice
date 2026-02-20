@@ -15,7 +15,7 @@ public class Vue extends Canvas {
         frame.pack();
         frame.setSize(width, height);
 
-        JPanel panel = new JPanel();
+        Panel panel = new Panel();
         frame.add(this);
         frame.setContentPane(panel);
 
@@ -27,6 +27,7 @@ public class Vue extends Canvas {
 
         frame.setVisible(true);
 
+
         lancer();
     }
 
@@ -35,5 +36,9 @@ public class Vue extends Canvas {
         while (true){
 
         }
+    }
+
+    public static void main(String[] args) {
+        new Vue();
     }
 }
