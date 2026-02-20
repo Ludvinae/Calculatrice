@@ -23,7 +23,7 @@ public class Vue extends JFrame {
         add(affichage, BorderLayout.NORTH);
 
         // Panneau des touches
-        Panel touches = new Panel();
+        Panel touches = new Panel(affichage);
         setBackground(Color.BLACK);
         // Positionne les touches au milieu
         add(touches, BorderLayout.CENTER);

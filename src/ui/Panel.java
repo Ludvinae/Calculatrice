@@ -10,10 +10,14 @@ public class Panel extends JPanel {
             "7️", "8", "9", "✖️",
             "4", "5", "6", "➖",
             "1", "2", "3", "➕",
-            "+/-", "0", ",", "🟰"
+            "+/-", "0", ".", "🟰"
     };
 
-    public Panel() {
+    AffichageUI affichage;
+
+    public Panel(AffichageUI affichage) {
+        this.affichage = affichage;
+
         setOpaque(false);
         setLayout(new GridLayout(5, 4, 5, 5));
 
@@ -27,11 +31,16 @@ public class Panel extends JPanel {
             bouton.setPreferredSize(new Dimension(50, 50));
 
             bouton.addActionListener(e -> {
-                System.out.println(texte);
+                versAffichage(texte);
             });
 
             add(bouton);
         }
+    }
+
+    public void versAffichage(String texte) {
+        if (texte.equals("🔙")) affichage.effacer();
+        else affichage.afficher(texte);
     }
 
     public String envoiEntree(String texte) {

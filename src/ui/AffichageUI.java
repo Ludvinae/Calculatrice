@@ -1,13 +1,23 @@
 package ui;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class AffichageUI extends JPanel {
 
-    JLabel label;
+    JLabel label = new JLabel();
+
+    public AffichageUI() {
+        add(label);
+        label.setVerticalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 30));
+    }
 
     public void afficher(String caractere) {
         label.setText(label.getText() + caractere);
+
+        System.out.println(caractere);
     }
 
     public void effacer() {
