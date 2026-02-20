@@ -16,7 +16,7 @@ public class Vue extends JFrame {
         setLayout(new BorderLayout());
 
         // Panneau d'affichage
-        JPanel affichage = new JPanel();
+        AffichageUI affichage = new AffichageUI();
         affichage.setPreferredSize(new Dimension(width, 100));
         setBackground(Color.white);
         // Positionne l'affichage en haut
