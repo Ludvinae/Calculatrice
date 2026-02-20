@@ -35,7 +35,6 @@ public class Vue extends JFrame {
     }
 
     public void lancer() {
-
         while (true){
 
         }

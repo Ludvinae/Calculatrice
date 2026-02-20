@@ -5,6 +5,7 @@ import exception.OperateurInconnu;
 import historique.*;
 import scanner.Scanner;
 import sortie.Affichage;
+import ui.Vue;
 import utils.ComposantsString;
 import utils.ComposantsValeur;
 
@@ -19,6 +20,7 @@ public class Manager {
     public Manager() {
         scanner = new Scanner();
         gestionDB();
+        Vue vue = new Vue();
     }
 
     /**
@@ -28,6 +30,8 @@ public class Manager {
     private String getExpression() {
         String expression = scanner.demanderExpression();
         scanner.fermerScanner();
+
+
 
         return expression;
     }
@@ -70,10 +74,6 @@ public class Manager {
         serviceDB = new CalculDbService(dao);
     }
 
-    public void ajoutcalcul(double valeur1, String operateur, double valeur2, double resultat) {
-        serviceDB.addCalcul(valeur1, operateur, valeur2, resultat);
-    }
-
     public List<Calcul> getCalculs() {
         return serviceDB.getAllCalculs();
     }
@@ -86,12 +86,13 @@ public class Manager {
      * Method calculatrice est le point d'entrée du programme.
      */
     public void calculatrice() {
+
         ComposantsValeur composant = interprete();
 
         try {
             double result = appelCalculer(composant);
             appelAffichage(result, composant);
-            ajoutcalcul(composant.valeur1(), composant.operateur(),  composant.valeur2(), result);
+            serviceDB.addCalcul(composant.valeur1(), composant.operateur(), composant.valeur2(), result);
         }
         catch(DivisionParZero | OperateurInconnu e) {
             System.out.println(e.getMessage());
