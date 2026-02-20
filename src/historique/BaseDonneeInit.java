@@ -18,7 +18,6 @@ public class BaseDonneeInit {
              Statement stmt = conn.createStatement()) {
 
             stmt.execute(sql);
-            System.out.println("Table users créée.");
 
         } catch (Exception e) {
             e.printStackTrace();
