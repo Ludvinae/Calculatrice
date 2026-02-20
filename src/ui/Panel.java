@@ -13,7 +13,8 @@ public class Panel extends JPanel {
     };
 
     public Panel() {
-        setLayout(new GridLayout(4, 4));
+        setOpaque(false);
+        setLayout(new GridLayout(4, 4, 5, 5));
 
         arrangement();
     }
