@@ -31,7 +31,7 @@ public class Panel extends JPanel {
             bouton.setPreferredSize(new Dimension(50, 50));
 
             bouton.addActionListener(e -> {
-                versAffichage(texte);
+                versAffichage(envoiEntree(texte));
             });
 
             add(bouton);
@@ -39,27 +39,22 @@ public class Panel extends JPanel {
     }
 
     public void versAffichage(String texte) {
-        if (texte.equals("🔙")) affichage.effacer();
+        if (texte.equalsIgnoreCase("Retour")) affichage.effacer();
+        else if (texte.equalsIgnoreCase("Clear")) affichage.effacerTout();
+        // Ajouter les cas manquants
         else affichage.afficher(texte);
     }
 
     public String envoiEntree(String texte) {
-        String entree = "";
+        String entree;
         switch (texte) {
-            case "Reset": texte = ""; break;
-            case "Clear": texte = ""; break;
-            case "0": entree = "0"; break;
-            case "1": entree = "1"; break;
-            case "2": entree = "2"; break;
-            case "3": entree = "3"; break;
-            case "4": entree = "4"; break;
-            case "5": entree = "5"; break;
-            case "6": entree = "6"; break;
-            case "7": entree = "7"; break;
-            case "8": entree = "8"; break;
-            case "9": entree = "9"; break;
             case "➕": entree = "+"; break;
-            default: entree = "";
+            case "➖": entree = "-"; break;
+            case "✖️": entree = "*"; break;
+            case "➗": entree = "/"; break;
+            case "🔙": entree = "Retour"; break;
+            case "🟰": entree = "="; break;
+            default: entree = texte;
         }
         return entree;
     }

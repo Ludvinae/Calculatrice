@@ -16,11 +16,13 @@ public class AffichageUI extends JPanel {
 
     public void afficher(String caractere) {
         label.setText(label.getText() + caractere);
-
-        System.out.println(caractere);
     }
 
     public void effacer() {
         label.setText(label.getText().substring(0, label.getText().length() - 1));
+    }
+
+    public void effacerTout() {
+        label.setText("");
     }
 }
