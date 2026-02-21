@@ -5,14 +5,17 @@ import java.awt.*;
 
 public class ComposantCalcul extends JPanel {
 
-    public ComposantCalcul(String expression, String resultat) {
+    public ComposantCalcul(String expression, String resultat, Theme theme) {
         setLayout(new BorderLayout());
+        setBackground(theme.getCouleurFond());
 
         JLabel expressionLabel = new JLabel(expression);
         expressionLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        expressionLabel.setAlignmentX(RIGHT_ALIGNMENT);
 
         JLabel resultatLabel = new JLabel(resultat);
         resultatLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        resultatLabel.setAlignmentX(RIGHT_ALIGNMENT);
 
         setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
         setAlignmentX(Component.RIGHT_ALIGNMENT);

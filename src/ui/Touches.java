@@ -14,10 +14,14 @@ public class Touches extends JPanel {
     };
 
     private JButton[] boutons = new JButton[texteBoutons.length];
+    private Theme theme;
 
-    public Touches() {
+    public Touches(Theme theme) {
+        this.theme = theme;
+
         setOpaque(false);
         setLayout(new GridLayout(5, 4, 5, 5));
+        setBackground(theme.getCouleurFond());
 
         arrangement();
     }
@@ -32,7 +36,9 @@ public class Touches extends JPanel {
             String texte = texteBoutons[i];
             JButton bouton = new JButton(texte);
 
-            bouton.setBackground(new Color(211, 211, 211));
+            // Toutes les touches sont de la meme couleur, sauf la touche egal
+            if (texte.equalsIgnoreCase("🟰")) bouton.setBackground(theme.getCouleurSecondaire());
+            else bouton.setBackground(theme.getCouleurTouches());
             bouton.setPreferredSize(new Dimension(75, 75));
 
             // Ajoute le bouton a un tableau

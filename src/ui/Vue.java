@@ -12,6 +12,7 @@ public class Vue extends JFrame {
 
     private final int width = 490;
     private final int height = 525;
+    private final Theme theme;
 
     private Manager manager;
 
@@ -25,11 +26,15 @@ public class Vue extends JFrame {
     public Vue(Manager manager) {
         this.manager = manager;
 
+        // Crée le theme
+        theme = new Theme(new Color(240, 245, 255), Color.WHITE, Color.WHITE, Color.BLACK, Color.CYAN);
+
         // Cree une nouvelle instance de StringBuilder
         entrees = new StringBuilder();
 
         setSize(width, height);
         setName("Calculatrice");
+
         // Permet de fermer le programme lorsque l'on ferme la fenetre de l'UI
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -37,23 +42,26 @@ public class Vue extends JFrame {
         // Panneau central pour l'affichage et les touches
         JPanel panelCentral = new JPanel();
 
+        panelCentral.setBackground(theme.getCouleurFond());
+
         // Panneau d'affichage
         affichage = new AffichageUI();
         affichage.setPreferredSize(new Dimension(width, 80));
-        affichage.setBackground(Color.white);
+        affichage.setBackground(theme.getCouleurAffichage());
+        affichage.setBorder(BorderFactory.createLineBorder(theme.getCouleurPolice()));
         // Positionne l'affichage en haut
         panelCentral.add(affichage, BorderLayout.NORTH);
 
         // Panneau des touches
-        touches = new Touches();
-        touches.setBackground(Color.LIGHT_GRAY);
+        touches = new Touches(theme);
+        touches.setBackground(theme.getCouleurFond());
         // Positionne les touches au milieu
         panelCentral.add(touches, BorderLayout.CENTER);
 
         // Panneau de l'historique
-        historique = new Historique();
+        historique = new Historique(theme);
         historique.setPreferredSize(new Dimension(150, height - 40));
-        historique.setBackground(Color.LIGHT_GRAY);
+        historique.setBackground(theme.getCouleurFond());
         creerHistorique();
 
         // Place l'historique dans un composant JScroll pour pouvoir faire defiler les calculs si ils sont nombreux
