@@ -16,11 +16,12 @@ import java.awt.*;
  */
 public class Vue extends JFrame {
 
-    private final int width = 490;
-    private final int height = 525;
+    private final int WIDTH = 490;
+    private final int HEIGHT = 525;
     private final Theme theme;
 
-    private Manager manager;
+    // a enlever quand refactor creer historique
+    private final Manager manager;
 
     private Touches touches;
     private AffichageUI affichage;
@@ -40,7 +41,7 @@ public class Vue extends JFrame {
     }
 
     private void configurerFrame() {
-        setSize(width, height);
+        setSize(WIDTH, HEIGHT);
         setResizable(false);
 
         setName("Calculatrice");
@@ -55,25 +56,25 @@ public class Vue extends JFrame {
         // Panneau central pour l'affichage et les touches
         JPanel panelCentral = new JPanel();
 
-        panelCentral.setBackground(theme.getCouleurFond());
+        panelCentral.setBackground(theme.couleurFond());
 
         // Panneau d'affichage
         affichage = new AffichageUI();
-        affichage.setPreferredSize(new Dimension(width, 80));
-        affichage.setBackground(theme.getCouleurAffichage());
-        affichage.setBorder(BorderFactory.createLineBorder(theme.getCouleurPolice()));
+        affichage.setPreferredSize(new Dimension(WIDTH, 80));
+        affichage.setBackground(theme.couleurAffichage());
+        affichage.setBorder(BorderFactory.createLineBorder(theme.couleurPolice()));
         // Positionne l'affichage en haut
         panelCentral.add(affichage, BorderLayout.NORTH);
 
         // Panneau des touches
         touches = new Touches(theme);
-        touches.setBackground(theme.getCouleurFond());
+        touches.setBackground(theme.couleurFond());
         // Positionne les touches au milieu
         panelCentral.add(touches, BorderLayout.CENTER);
 
         // Panneau de l'historique
         historique = new Historique(theme);
-        historique.setBackground(theme.getCouleurFond());
+        historique.setBackground(theme.couleurFond());
         creerHistorique();
 
         // Place l'historique dans un composant JScroll pour pouvoir faire defiler les calculs si ils sont nombreux

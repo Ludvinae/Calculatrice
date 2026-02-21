@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Historique extends JPanel {
 
-    private Theme theme;
+    private final Theme theme;
 
     public Historique(Theme theme) {
         this.theme = theme;

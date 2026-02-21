@@ -9,7 +9,7 @@ public class ComposantCalcul extends JPanel {
 
     public ComposantCalcul(String expression, String resultat, Theme theme) {
         setLayout(new BorderLayout());
-        setBackground(theme.getCouleurFond());
+        setBackground(theme.couleurFond());
 
         JLabel expressionLabel = new JLabel(expression);
         expressionLabel.setFont(new Font("Arial", Font.PLAIN, 12));

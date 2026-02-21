@@ -9,9 +9,9 @@ import javax.swing.*;
  */
 public class ControleurUI {
 
-    private Vue vue;
-    private Manager manager;
-    private GestionEntrees entrees;
+    private final Vue vue;
+    private final Manager manager;
+    private final GestionEntrees entrees;
 
     public ControleurUI(Vue vue, Manager manager) {
         this.vue = vue;
@@ -50,8 +50,7 @@ public class ControleurUI {
                 entrees.effacerDernier();
             }
             case "+/-" -> {
-                // a implementer pour gerer le changement de signe
-                vue.changeSigne();
+                vue.changeSigne(); // a implementer pour gerer le changement de signe
             }
             default -> {
                 if (entrees.estVide()) vue.effacerAffichage();

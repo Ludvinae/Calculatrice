@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Touches extends JPanel {
 
-    private String[] texteBoutons = {
+    private final String[] texteBoutons = {
             "Reset", "Clear", "🔙", "➗",
             "7", "8", "9", "✖️",
             "4", "5", "6", "➖",
@@ -15,15 +15,15 @@ public class Touches extends JPanel {
             "+/-", "0", ".", "🟰"
     };
 
-    private JButton[] boutons = new JButton[texteBoutons.length];
-    private Theme theme;
+    private final JButton[] boutons = new JButton[texteBoutons.length];
+    private final Theme theme;
 
     public Touches(Theme theme) {
         this.theme = theme;
 
         setOpaque(false);
         setLayout(new GridLayout(5, 4, 5, 5));
-        setBackground(theme.getCouleurFond());
+        setBackground(theme.couleurFond());
 
         arrangement();
     }
@@ -39,8 +39,8 @@ public class Touches extends JPanel {
             JButton bouton = new JButton(texte);
 
             // Toutes les touches sont de la meme couleur, sauf la touche egal
-            if (texte.equalsIgnoreCase("🟰")) bouton.setBackground(theme.getCouleurSecondaire());
-            else bouton.setBackground(theme.getCouleurTouches());
+            if (texte.equalsIgnoreCase("🟰")) bouton.setBackground(theme.couleurSecondaire());
+            else bouton.setBackground(theme.couleurTouches());
             bouton.setPreferredSize(new Dimension(75, 75));
 
             // Ajoute le bouton a un tableau
@@ -52,16 +52,15 @@ public class Touches extends JPanel {
     }
 
     public String conversionEntree(String texte) {
-        String entree;
-        switch (texte) {
-            case "➕": entree = "+"; break;
-            case "➖": entree = "-"; break;
-            case "✖️": entree = "*"; break;
-            case "➗": entree = "/"; break;
-            case "🔙": entree = "Retour"; break;
-            case "🟰": entree = "="; break;
-            default: entree = texte;
-        }
+        String entree = switch (texte) {
+            case "➕" -> "+";
+            case "➖" -> "-";
+            case "✖️" -> "*";
+            case "➗" -> "/";
+            case "🔙" -> "Retour";
+            case "🟰" -> "=";
+            default -> texte;
+        };
         return entree;
     }
 }
