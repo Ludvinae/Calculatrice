@@ -61,10 +61,11 @@ public class Vue extends JFrame {
 
                 // Envoi le texte soit directement a l'affichage, soit au controleur.Manager
                 if (texteConverti.equalsIgnoreCase("=")) {
+                    affichage.effacerTout();
                     transfertExpression(construitExpression());
 
                     // Efface l'expression en vue du prochain calcul
-                    effecerEntrees();
+                    effacerEntrees();
                 }
                 else {
                     affichage.afficher(texteConverti);
@@ -83,12 +84,13 @@ public class Vue extends JFrame {
         entrees.append(texte);
     }
 
-    private void effecerEntrees() {
+    private void effacerEntrees() {
         entrees = new StringBuilder();
     }
 
     private String construitExpression() {
         return entrees.toString();
     }
+
 
 }

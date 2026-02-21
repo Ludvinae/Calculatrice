@@ -109,10 +109,18 @@ public class Manager {
         try {
             double resultat = appelCalculer(composant);
             serviceDB.addCalcul(composant.valeur1(), composant.operateur(), composant.valeur2(), resultat);
-            return String.valueOf(resultat);
+            return formatResultat(resultat);
         }
         catch(DivisionParZero | OperateurInconnu e) {
             return e.getMessage();
+        }
+    }
+
+    public String formatResultat(double value) {
+        if (value == (long) value) {
+            return String.valueOf((long) value);
+        } else {
+            return String.valueOf(value);
         }
     }
 }
