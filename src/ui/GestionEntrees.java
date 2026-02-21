@@ -19,4 +19,6 @@ public class GestionEntrees {
     public String construire() { return entrees.toString(); }
 
     public boolean estVide() { return entrees.isEmpty(); }
+
+    public boolean estTropLong() { return entrees.toString().length() >= 20; }
 }

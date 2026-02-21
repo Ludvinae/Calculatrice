@@ -54,6 +54,7 @@ public class ControleurUI {
                 vue.changeSigne(); // a implementer pour gerer le changement de signe
             }
             default -> {
+                if (entrees.estTropLong()) return;
                 if (entrees.estVide()) vue.effacerAffichage();
                 entrees.ajouter(texte);
                 vue.afficher(texte);

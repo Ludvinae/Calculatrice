@@ -11,7 +11,7 @@ public class AffichageUI extends JPanel {
         add(label);
         label.setVerticalAlignment(JLabel.CENTER);
         label.setHorizontalAlignment(JLabel.CENTER);
-        label.setFont(new Font("Arial", Font.BOLD, 30));
+        label.setFont(new Font("Arial", Font.BOLD, 28));
     }
 
     public void afficher(String caractere) {
