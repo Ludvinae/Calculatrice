@@ -20,8 +20,6 @@ public class Manager {
     private Scanner scanner;
     private CalculDbService serviceDB;
 
-    private Vue vue;
-
     public Manager() {
         scanner = new Scanner();
         gestionDB();
@@ -101,7 +99,7 @@ public class Manager {
     }
 
     public void calculatriceUI() {
-        vue = new Vue(this);
+        new Vue(this);
     }
 
     public String faireCalculUI(String expression) {
