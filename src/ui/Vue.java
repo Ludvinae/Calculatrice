@@ -67,6 +67,20 @@ public class Vue extends JFrame {
                     // Efface l'expression en vue du prochain calcul
                     effacerEntrees();
                 }
+                else if (texteConverti.equalsIgnoreCase("Retour")) {
+                    affichage.effacer();
+                    entrees.deleteCharAt(entrees.length() - 1);
+                }
+                else if (texteConverti.equalsIgnoreCase("Clear")) {
+                    affichage.effacerTout();
+                    effacerEntrees();
+                }
+                else if (texteConverti.equalsIgnoreCase("Reset")) {
+                    manager.effacerHistorique();
+                }
+                else if (texteConverti.equalsIgnoreCase("+/-")) {
+                    // Cas a implementer
+                }
                 else {
                     affichage.afficher(texteConverti);
                     stockerEntrees(texteConverti);
@@ -91,6 +105,5 @@ public class Vue extends JFrame {
     private String construitExpression() {
         return entrees.toString();
     }
-
 
 }

@@ -62,8 +62,8 @@ public class Manager {
      * @param : result
      * @param : composant
      */
-    private void appelAffichage(double result, ComposantsValeur composant) {
-        Affichage display = new Affichage(result, composant);
+    private void appelAffichage(double resultat, ComposantsValeur composant) {
+        Affichage display = new Affichage(resultat, composant);
         display.afficher();
     }
 
