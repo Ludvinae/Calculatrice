@@ -10,8 +10,8 @@ import java.awt.*;
 
 public class Vue extends JFrame {
 
-    private final int width = 350;
-    private final int height = 480;
+    private final int width = 490;
+    private final int height = 525;
 
     private Manager manager;
 
@@ -34,24 +34,39 @@ public class Vue extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
+        // Panneau central pour l'affichage et les touches
+        JPanel panelCentral = new JPanel();
+
         // Panneau d'affichage
         affichage = new AffichageUI();
-        affichage.setPreferredSize(new Dimension(width, 100));
-        setBackground(Color.white);
+        affichage.setPreferredSize(new Dimension(width, 80));
+        affichage.setBackground(Color.white);
         // Positionne l'affichage en haut
-        add(affichage, BorderLayout.NORTH);
+        panelCentral.add(affichage, BorderLayout.NORTH);
 
         // Panneau des touches
         touches = new Touches();
-        setBackground(Color.BLACK);
+        touches.setBackground(Color.LIGHT_GRAY);
         // Positionne les touches au milieu
-        add(touches, BorderLayout.CENTER);
+        panelCentral.add(touches, BorderLayout.CENTER);
 
         // Panneau de l'historique
         historique = new Historique();
-        setBackground(Color.LIGHT_GRAY);
+        historique.setPreferredSize(new Dimension(150, height - 40));
+        historique.setBackground(Color.LIGHT_GRAY);
         creerHistorique();
-        add(historique, BorderLayout.EAST);
+
+        // Place l'historique dans un composant JScroll pour pouvoir faire defiler les calculs si ils sont nombreux
+        JScrollPane scroll = new JScrollPane(historique);
+        scroll.setViewportView(historique);
+
+        // Empeche le scroll horizontal
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+        // Place le panel central et l'historique dans la frame
+        add(panelCentral, BorderLayout.CENTER);
+        add(scroll, BorderLayout.EAST);
 
         // Ne pas ajouter de composants apres cette commande
         setVisible(true);
@@ -68,13 +83,21 @@ public class Vue extends JFrame {
                 // Recupere le texte du bouton en le convertissant au prealable en format utilisable (pas d'emojis)
                 String texteConverti = touches.conversionEntree(bouton.getText());
 
-                // Envoi le texte soit directement a l'affichage, soit au controleur.Manager
+                // Envoi le texte soit directement a l'affichage, soit au controleur Manager
                 if (texteConverti.equalsIgnoreCase("=")) {
                     affichage.effacerTout();
                     transfertExpression(construitExpression());
 
                     // Efface l'expression en vue du prochain calcul
                     effacerEntrees();
+
+                    // A décommenté quand la methode pour recuperer le dernier calcul sera implementée
+                    /*
+                    Calcul calcul = manager.dernierCalcul();
+                    String expression = calcul.getValeur1Db() + " " + calcul.getOperateurDb() + " " + calcul.getValeur2Db() + " =";
+                    String resultat = manager.formatResultat(calcul.getResultatDb());
+                    historique.ajouterCalcul(expression, resultat);
+                     */
                 }
                 else if (texteConverti.equalsIgnoreCase("Retour")) {
                     affichage.effacer();
@@ -86,6 +109,7 @@ public class Vue extends JFrame {
                 }
                 else if (texteConverti.equalsIgnoreCase("Reset")) {
                     manager.effacerHistorique();
+                    creerHistorique();
                 }
                 else if (texteConverti.equalsIgnoreCase("+/-")) {
                     // Cas a implementer
@@ -116,6 +140,9 @@ public class Vue extends JFrame {
     }
 
     private void creerHistorique() {
+        // Vide l'historique
+        historique.removeAll();
+
         List<Calcul> calculs = manager.getCalculs();
         for (Calcul calcul : calculs) {
 
@@ -125,5 +152,8 @@ public class Vue extends JFrame {
 
             historique.ajouterCalcul(expression, resultat);
         }
+        historique.rafraichisHistorique();
     }
+
+
 }

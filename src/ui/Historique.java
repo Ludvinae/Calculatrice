@@ -6,6 +6,7 @@ public class Historique extends JPanel {
 
     public Historique() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setAlignmentX(RIGHT_ALIGNMENT);
     }
 
     public void ajouterCalcul(String expression, String resultat) {
@@ -14,10 +15,14 @@ public class Historique extends JPanel {
         // Ajoute le dernier calcul en haut
         add(calcul, 0);
 
-        // Rafraichis l'affichage
+        rafraichisHistorique();
+    }
+
+    /**
+     * Rafraichis l'affichage de l'historique
+     */
+    public void rafraichisHistorique() {
         revalidate();
         repaint();
     }
-
-
 }

@@ -77,6 +77,10 @@ public class Manager {
         return serviceDB.getAllCalculs();
     }
 
+    public Calcul dernierCalcul() {
+        return null;
+    }
+
     public void effacerHistorique() {
         serviceDB.deleteCalcul();
     }

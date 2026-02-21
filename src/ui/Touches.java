@@ -33,7 +33,7 @@ public class Touches extends JPanel {
             JButton bouton = new JButton(texte);
 
             bouton.setBackground(new Color(211, 211, 211));
-            bouton.setPreferredSize(new Dimension(50, 50));
+            bouton.setPreferredSize(new Dimension(75, 75));
 
             // Ajoute le bouton a un tableau
             boutons[i] = bouton;
