@@ -3,6 +3,9 @@ package ui;
 
 import controleur.Manager;
 import historique.Calcul;
+import ui.composants.AffichageUI;
+import ui.composants.Historique;
+import ui.composants.Touches;
 
 import javax.swing.*;
 import java.util.List;
@@ -23,19 +26,14 @@ public class Vue extends JFrame {
     private AffichageUI affichage;
     private Historique historique;
 
-    private GestionEntrees entrees;
-
 
     public Vue(Manager manager) {
         this.manager = manager;
         // Crée le theme
         theme = new Theme();
-        // Cree une nouvelle instance de StringBuilder
-        entrees = new GestionEntrees();
 
         configurerFrame();
         initialiserUI();
-        //ecouter();
 
         // Ne pas ajouter de composants apres cette commande
         setVisible(true);
@@ -108,12 +106,6 @@ public class Vue extends JFrame {
 
     public String conversionTexteTouches(String texte) {
         return touches.conversionEntree(texte);
-    }
-
-    public void transfertExpression(String expression) {
-        String resultat = manager.faireCalculUI(expression);
-        affichage.afficher(resultat);
-        affichage.repaint();
     }
 
     private void creerHistorique() {

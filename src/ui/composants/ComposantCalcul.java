@@ -1,4 +1,6 @@
-package ui;
+package ui.composants;
+
+import ui.Theme;
 
 import javax.swing.*;
 import java.awt.*;
