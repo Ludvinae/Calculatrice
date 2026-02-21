@@ -1,3 +1,5 @@
+package controleur;
+
 import convertisseur.Interpreteur;
 import convertisseur.Operation;
 import exception.DivisionParZero;
@@ -11,16 +13,17 @@ import utils.ComposantsValeur;
 
 import java.util.List;
 
-// La class Manager sert de contrôleur pour la calculatrice et va gérer le programme dans son ensemble.
+// La class controleur.Manager sert de contrôleur pour la calculatrice et va gérer le programme dans son ensemble.
 public class Manager {
 
     private Scanner scanner;
     private CalculDbService serviceDB;
 
+    private Vue vue;
+
     public Manager() {
         scanner = new Scanner();
         gestionDB();
-        Vue vue = new Vue();
     }
 
     /**
@@ -31,18 +34,15 @@ public class Manager {
         String expression = scanner.demanderExpression();
         scanner.fermerScanner();
 
-
-
         return expression;
     }
 
     /**
-     * Method Interpret va permettre d'interpréter l'expression donnée par l'utilisateur.
+     * Methode interprete va permettre d'interpréter l'expression donnée par l'utilisateur.
      * @return ComposantValeur
      */
-    private ComposantsValeur interprete() {
-        String ex = getExpression();
-        Interpreteur interprete = new Interpreteur(ex);
+    private ComposantsValeur interprete(String expression) {
+        Interpreteur interprete = new Interpreteur(expression);
         ComposantsString composants = interprete.separerComposants();
         return interprete.genererFormule(composants);
     }
@@ -86,17 +86,33 @@ public class Manager {
      * Method calculatrice est le point d'entrée du programme.
      */
     public void calculatrice() {
-
-        ComposantsValeur composant = interprete();
+        String ex = getExpression();
+        ComposantsValeur composant = interprete(ex);
 
         try {
-            double result = appelCalculer(composant);
-            appelAffichage(result, composant);
-            serviceDB.addCalcul(composant.valeur1(), composant.operateur(), composant.valeur2(), result);
+            double resultat = appelCalculer(composant);
+            appelAffichage(resultat, composant);
+            serviceDB.addCalcul(composant.valeur1(), composant.operateur(), composant.valeur2(), resultat);
         }
         catch(DivisionParZero | OperateurInconnu e) {
             System.out.println(e.getMessage());
         }
     }
 
+    public void calculatriceUI() {
+        vue = new Vue(this);
+    }
+
+    public String faireCalculUI(String expression) {
+        ComposantsValeur composant = interprete(expression);
+
+        try {
+            double resultat = appelCalculer(composant);
+            serviceDB.addCalcul(composant.valeur1(), composant.operateur(), composant.valeur2(), resultat);
+            return String.valueOf(resultat);
+        }
+        catch(DivisionParZero | OperateurInconnu e) {
+            return e.getMessage();
+        }
+    }
 }

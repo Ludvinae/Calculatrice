@@ -97,7 +97,7 @@ L’usage d’une base de données est facultatif et non prioritaire.
 
 ## Mode d'emploi
 
-Créer une instance de la classe **Manager**, puis appeller la méthode **calculatrice**.
+Créer une instance de la classe **controleur.Manager**, puis appeller la méthode **calculatrice**.
 
 ## Diagrammes
 
