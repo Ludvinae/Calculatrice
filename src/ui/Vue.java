@@ -20,7 +20,7 @@ public class Vue extends JFrame {
     private AffichageUI affichage;
     private Historique historique;
 
-    private StringBuilder entrees;
+    private GestionEntrees entrees;
 
 
     public Vue(Manager manager) {
@@ -28,7 +28,7 @@ public class Vue extends JFrame {
         // Crée le theme
         theme = new Theme();
         // Cree une nouvelle instance de StringBuilder
-        entrees = new StringBuilder();
+        entrees = new GestionEntrees();
 
         configurerFrame();
         initialiserUI();
@@ -126,7 +126,7 @@ public class Vue extends JFrame {
         transfertExpression(construitExpression());
 
         // Efface l'expression en vue du prochain calcul
-        entrees = new StringBuilder();
+        entrees.effacerTout();
 
         // A décommenté quand la methode pour recuperer le dernier calcul sera implementée
                     /*
@@ -144,17 +144,17 @@ public class Vue extends JFrame {
     }
 
     private String construitExpression() {
-        return entrees.toString();
+        return entrees.construire();
     }
 
     private void effacerDerniereEntree() {
         affichage.effacer();
-        entrees.deleteCharAt(entrees.length() - 1);
+        entrees.effacerDernier();
     }
 
     private void effacerEntrees() {
         affichage.effacerTout();
-        entrees = new StringBuilder();
+        entrees.effacerTout();
     }
 
     private void creerHistorique() {
@@ -178,8 +178,8 @@ public class Vue extends JFrame {
     }
 
     private void afficherEntree(String texte) {
-        if (entrees.isEmpty()) affichage.effacerTout();
+        if (entrees.estVide()) affichage.effacerTout();
         affichage.afficher(texte);
-        entrees.append(texte);
+        entrees.ajouter(texte);
     }
 }
