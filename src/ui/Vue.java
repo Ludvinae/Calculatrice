@@ -95,7 +95,7 @@ public class Vue extends JFrame {
                 if (texteConverti.equalsIgnoreCase("=")) envoiVersManager();
                 else if (texteConverti.equalsIgnoreCase("Retour")) effacerDerniereEntree();
                 else if (texteConverti.equalsIgnoreCase("Clear")) effacerEntrees();
-                else if (texteConverti.equalsIgnoreCase("Reset")) creerHistorique();
+                else if (texteConverti.equalsIgnoreCase("Reset")) manager.effacerHistorique();
                 else if (texteConverti.equalsIgnoreCase("+/-")); // Cas a implementer
                 else afficherEntree(texteConverti);
             });
@@ -104,7 +104,9 @@ public class Vue extends JFrame {
 
     public void transfertExpression(String expression) {
         String resultat = manager.faireCalculUI(expression);
+        System.out.println(resultat);
         affichage.afficher(resultat);
+        affichage.repaint();
     }
 
     private void afficherEntree(String texte) {
@@ -125,7 +127,6 @@ public class Vue extends JFrame {
     private void creerHistorique() {
         // Vide l'historique
         historique.removeAll();
-        manager.effacerHistorique();
 
         List<Calcul> calculs = manager.getCalculs();
         for (Calcul calcul : calculs) {
@@ -144,7 +145,7 @@ public class Vue extends JFrame {
         transfertExpression(construitExpression());
 
         // Efface l'expression en vue du prochain calcul
-        effacerEntrees();
+        entrees = new StringBuilder();
 
         // A décommenté quand la methode pour recuperer le dernier calcul sera implementée
                     /*
