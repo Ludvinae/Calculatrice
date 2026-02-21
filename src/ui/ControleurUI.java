@@ -50,6 +50,7 @@ public class ControleurUI {
                 // a implementer pour gerer le changement de signe
             }
             default -> {
+                if (entrees.estVide()) vue.effacerAffichage();
                 entrees.ajouter(texte);
                 vue.afficher(texte);
             }

@@ -19,6 +19,7 @@ public class AffichageUI extends JPanel {
     }
 
     public void effacer() {
+        if (label.getText().isEmpty()) return;
         label.setText(label.getText().substring(0, label.getText().length() - 1));
     }
 
