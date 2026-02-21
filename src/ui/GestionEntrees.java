@@ -1,5 +1,8 @@
 package ui;
 
+/**
+ * Gestion de l'état des entrées utilisateur
+ */
 public class GestionEntrees {
 
     private StringBuilder entrees = new StringBuilder();
