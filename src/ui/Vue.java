@@ -44,6 +44,8 @@ public class Vue extends JFrame {
     private void configurerFrame() {
         setSize(width, height);
         setName("Calculatrice");
+        // Fait apparaitre la fenetre au milieu de l'ecran
+        setLocationRelativeTo(null);
         // Permet de fermer le programme lorsque l'on ferme la fenetre de l'UI
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -104,77 +106,14 @@ public class Vue extends JFrame {
         historique.ajouterCalcul(expr, res);
     }
 
-    public void rafraichirHistorique() {
-        creerHistorique();
-    }
-
     public String conversionTexteTouches(String texte) {
         return touches.conversionEntree(texte);
-    }
-
-    private void ecouter() {
-        // Recupere la liste de boutons du panel touches
-        JButton[] boutons = touches.getBoutons();
-
-        for (JButton bouton : boutons) {
-            bouton.addActionListener(e -> {
-                // Recupere le texte du bouton en le convertissant au prealable en format utilisable (pas d'emojis)
-                String texteConverti = touches.conversionEntree(bouton.getText());
-
-                // Envoi le texte soit directement a l'affichage, soit au controleur Manager
-                gererEntree(texteConverti);
-            });
-        }
-    }
-
-    private void gererEntree(String texte) {
-        switch (texte) {
-            case "=" -> envoiVersManager();
-            case "Retour" -> effacerDerniereEntree();
-            case "Clear" -> effacerEntrees();
-            case "Reset" -> {
-                manager.effacerHistorique();
-                creerHistorique();
-            }
-            case "+/-" -> changeSigne();
-            default -> afficherEntree(texte);
-        }
-    }
-
-    private void envoiVersManager() {
-        affichage.effacerTout();
-        transfertExpression(construitExpression());
-
-        // Efface l'expression en vue du prochain calcul
-        entrees.effacerTout();
-
-        // A décommenté quand la methode pour recuperer le dernier calcul sera implementée
-                    /*
-                    Calcul calcul = manager.dernierCalcul();
-                    String expression = calcul.getValeur1Db() + " " + calcul.getOperateurDb() + " " + calcul.getValeur2Db() + " =";
-                    String resultat = manager.formatResultat(calcul.getResultatDb());
-                    historique.ajouterCalcul(expression, resultat);
-                     */
     }
 
     public void transfertExpression(String expression) {
         String resultat = manager.faireCalculUI(expression);
         affichage.afficher(resultat);
         affichage.repaint();
-    }
-
-    private String construitExpression() {
-        return entrees.construire();
-    }
-
-    private void effacerDerniereEntree() {
-        affichage.effacer();
-        entrees.effacerDernier();
-    }
-
-    private void effacerEntrees() {
-        affichage.effacerTout();
-        entrees.effacerTout();
     }
 
     private void creerHistorique() {
@@ -193,13 +132,8 @@ public class Vue extends JFrame {
         historique.rafraichisHistorique();
     }
 
-    private void changeSigne() {
+    public void changeSigne() {
         // A implementer
     }
 
-    private void afficherEntree(String texte) {
-        if (entrees.estVide()) affichage.effacerTout();
-        affichage.afficher(texte);
-        entrees.ajouter(texte);
-    }
 }

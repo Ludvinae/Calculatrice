@@ -49,15 +49,6 @@ public class Touches extends JPanel {
         }
     }
 
-    /*
-    public void versAffichage(String texte) {
-        if (texte.equalsIgnoreCase("Retour")) affichage.effacer();
-        else if (texte.equalsIgnoreCase("Clear")) affichage.effacerTout();
-        // Ajouter les cas manquants
-        else affichage.afficher(texte);
-    }
-     */
-
     public String conversionEntree(String texte) {
         String entree;
         switch (texte) {

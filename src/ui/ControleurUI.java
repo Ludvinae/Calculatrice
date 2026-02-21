@@ -22,9 +22,11 @@ public class ControleurUI {
     }
 
     private void initialiserListeners() {
+        // Itere sur la liste de boutons du panel touches
         for (JButton bouton : vue.getBoutons()) {
 
             bouton.addActionListener(e -> {
+                // Recupere le texte du bouton en le convertissant dans un format utilisable (pas d'emojis)
                 String texte = bouton.getText();
                 gererEntree(vue.conversionTexteTouches(texte));
             });
@@ -48,6 +50,7 @@ public class ControleurUI {
             }
             case "+/-" -> {
                 // a implementer pour gerer le changement de signe
+                vue.changeSigne();
             }
             default -> {
                 if (entrees.estVide()) vue.effacerAffichage();
