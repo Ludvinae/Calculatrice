@@ -92,41 +92,12 @@ public class Vue extends JFrame {
                 String texteConverti = touches.conversionEntree(bouton.getText());
 
                 // Envoi le texte soit directement a l'affichage, soit au controleur Manager
-                if (texteConverti.equalsIgnoreCase("=")) {
-                    affichage.effacerTout();
-                    transfertExpression(construitExpression());
-
-                    // Efface l'expression en vue du prochain calcul
-                    effacerEntrees();
-
-                    // A décommenté quand la methode pour recuperer le dernier calcul sera implementée
-                    /*
-                    Calcul calcul = manager.dernierCalcul();
-                    String expression = calcul.getValeur1Db() + " " + calcul.getOperateurDb() + " " + calcul.getValeur2Db() + " =";
-                    String resultat = manager.formatResultat(calcul.getResultatDb());
-                    historique.ajouterCalcul(expression, resultat);
-                     */
-                }
-                else if (texteConverti.equalsIgnoreCase("Retour")) {
-                    affichage.effacer();
-                    entrees.deleteCharAt(entrees.length() - 1);
-                }
-                else if (texteConverti.equalsIgnoreCase("Clear")) {
-                    affichage.effacerTout();
-                    effacerEntrees();
-                }
-                else if (texteConverti.equalsIgnoreCase("Reset")) {
-                    manager.effacerHistorique();
-                    creerHistorique();
-                }
-                else if (texteConverti.equalsIgnoreCase("+/-")) {
-                    // Cas a implementer
-                }
-                else {
-                    if (entrees.isEmpty()) affichage.effacerTout();
-                    affichage.afficher(texteConverti);
-                    stockerEntrees(texteConverti);
-                }
+                if (texteConverti.equalsIgnoreCase("=")) envoiVersManager();
+                else if (texteConverti.equalsIgnoreCase("Retour")) effacerDerniereEntree();
+                else if (texteConverti.equalsIgnoreCase("Clear")) effacerEntrees();
+                else if (texteConverti.equalsIgnoreCase("Reset")) creerHistorique();
+                else if (texteConverti.equalsIgnoreCase("+/-")); // Cas a implementer
+                else afficherEntree(texteConverti);
             });
         }
     }
@@ -136,11 +107,14 @@ public class Vue extends JFrame {
         affichage.afficher(resultat);
     }
 
-    private void stockerEntrees(String texte) {
+    private void afficherEntree(String texte) {
+        if (entrees.isEmpty()) affichage.effacerTout();
+        affichage.afficher(texte);
         entrees.append(texte);
     }
 
     private void effacerEntrees() {
+        affichage.effacerTout();
         entrees = new StringBuilder();
     }
 
@@ -151,6 +125,7 @@ public class Vue extends JFrame {
     private void creerHistorique() {
         // Vide l'historique
         historique.removeAll();
+        manager.effacerHistorique();
 
         List<Calcul> calculs = manager.getCalculs();
         for (Calcul calcul : calculs) {
@@ -164,5 +139,26 @@ public class Vue extends JFrame {
         historique.rafraichisHistorique();
     }
 
+    private void envoiVersManager() {
+        affichage.effacerTout();
+        transfertExpression(construitExpression());
+
+        // Efface l'expression en vue du prochain calcul
+        effacerEntrees();
+
+        // A décommenté quand la methode pour recuperer le dernier calcul sera implementée
+                    /*
+                    Calcul calcul = manager.dernierCalcul();
+                    String expression = calcul.getValeur1Db() + " " + calcul.getOperateurDb() + " " + calcul.getValeur2Db() + " =";
+                    String resultat = manager.formatResultat(calcul.getResultatDb());
+                    historique.ajouterCalcul(expression, resultat);
+                     */
+
+    }
+
+    private void effacerDerniereEntree() {
+        affichage.effacer();
+        entrees.deleteCharAt(entrees.length() - 1);
+    }
 
 }
