@@ -15,6 +15,7 @@ public class Vue extends JFrame {
 
     private Touches touches;
     private AffichageUI affichage;
+    private Historique historique;
 
     private StringBuilder entrees;
 
@@ -43,6 +44,11 @@ public class Vue extends JFrame {
         setBackground(Color.BLACK);
         // Positionne les touches au milieu
         add(touches, BorderLayout.CENTER);
+
+        // Panneau de l'historique
+        historique = new Historique();
+        setBackground(Color.LIGHT_GRAY);
+        add(historique, BorderLayout.EAST);
 
         // Ne pas ajouter de composants apres cette commande
         setVisible(true);
