@@ -27,7 +27,7 @@ public class Vue extends JFrame {
         this.manager = manager;
 
         // Crée le theme
-        theme = new Theme(new Color(240, 245, 255), Color.WHITE, Color.WHITE, Color.BLACK, Color.CYAN);
+        theme = new Theme();
 
         // Cree une nouvelle instance de StringBuilder
         entrees = new StringBuilder();
