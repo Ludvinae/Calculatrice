@@ -9,7 +9,7 @@ public class Touches extends JPanel {
 
     private String[] texteBoutons = {
             "Reset", "Clear", "🔙", "➗",
-            "7️", "8", "9", "✖️",
+            "7", "8", "9", "✖️",
             "4", "5", "6", "➖",
             "1", "2", "3", "➕",
             "+/-", "0", ".", "🟰"

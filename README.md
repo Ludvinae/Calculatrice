@@ -97,7 +97,8 @@ L’usage d’une base de données est facultatif et non prioritaire.
 
 ## Mode d'emploi
 
-Créer une instance de la classe **controleur.Manager**, puis appeller la méthode **calculatrice**.
+Créer une instance de la classe **Manager**, puis appeller la méthode **calculatrice** pour lancer l'application en mode console.
+Appeller la méthode **calculatriceUI** permet d'accéder à la place au mode interface graphique (réalisé avec Swing).
 
 ## Diagrammes
 

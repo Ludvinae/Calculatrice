@@ -2,8 +2,7 @@ package controleur;
 
 import convertisseur.Interpreteur;
 import convertisseur.Operation;
-import exception.DivisionParZero;
-import exception.OperateurInconnu;
+import exception.*;
 import historique.*;
 import scanner.Scanner;
 import sortie.Affichage;
@@ -14,6 +13,8 @@ import utils.ComposantsValeur;
 
 import java.text.DecimalFormat;
 import java.util.List;
+
+import static scanner.VerifierExpression.verifierExpression;
 
 // La class controleur.Manager sert de contrôleur pour la calculatrice et va gérer le programme dans son ensemble.
 public class Manager {
@@ -109,14 +110,15 @@ public class Manager {
     }
 
     public String faireCalculUI(String expression) {
-        ComposantsValeur composant = interprete(expression);
-
+        // utilisation de la méthode statique de VerifierExpression pour forcer le test de l'entrée utilsateur venant de l'ui
         try {
+            verifierExpression(expression);
+            ComposantsValeur composant = interprete(expression);
             double resultat = appelCalculer(composant);
             serviceDB.addCalcul(composant.valeur1(), composant.operateur(), composant.valeur2(), resultat);
             return formatResultat(resultat);
         }
-        catch(DivisionParZero | OperateurInconnu e) {
+        catch (OperateurInconnu | AlaisException | ValeurNonNumerique | FormatIncorrect | DivisionParZero e){
             return e.getMessage();
         }
     }

@@ -11,8 +11,8 @@ public class VerifierExpression {
      * Methods qui vérifie l'expression et les éventuelles erreurs et renvoyant l'exception adéquate
      * @param : expression
      */
-    protected static void verifierExpression(String expression) {
-        if (!verifierOperateur(expression)) throw new OperateurInconnu("Il manque un opéraeur valide a l'expression entrée.");
+    public static void verifierExpression(String expression) {
+        if (!verifierOperateur(expression)) throw new OperateurInconnu("Il manque un opérateur valide a l'expression entrée.");
         if (verifierVirgule(expression)) throw new AlaisException("Veuillez utiliser un point à la place de la virgule pour séparer les décimales.");
         if (!verifierValeurNumeriques(expression)) throw new ValeurNonNumerique("L'expression doit contenir uniquement des valeurs numériques et l'opérateur.");
         if (!verifierFormat(expression)) throw new FormatIncorrect("Le format de l'expression devrait suivre le format 'valeur opérateur valeur");

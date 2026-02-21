@@ -41,6 +41,8 @@ public class Vue extends JFrame {
 
     private void configurerFrame() {
         setSize(width, height);
+        setResizable(false);
+
         setName("Calculatrice");
         // Fait apparaitre la fenetre au milieu de l'ecran
         setLocationRelativeTo(null);
