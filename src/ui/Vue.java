@@ -71,12 +71,13 @@ public class Vue extends JFrame {
 
         // Panneau de l'historique
         historique = new Historique(theme);
-        historique.setPreferredSize(new Dimension(150, height - 40));
         historique.setBackground(theme.getCouleurFond());
         creerHistorique();
 
         // Place l'historique dans un composant JScroll pour pouvoir faire defiler les calculs si ils sont nombreux
         JScrollPane scroll = new JScrollPane(historique);
+        scroll.setPreferredSize(new Dimension(150, 0));
+        scroll.getVerticalScrollBar().setUnitIncrement(10);
         scroll.setViewportView(historique);
 
         // Empeche le scroll horizontal
@@ -104,11 +105,15 @@ public class Vue extends JFrame {
         historique.ajouterCalcul(expr, res);
     }
 
+    public void rafraichirHistorique() {
+        historique.rafraichisHistorique();
+    }
+
     public String conversionTexteTouches(String texte) {
         return touches.conversionEntree(texte);
     }
 
-    private void creerHistorique() {
+    public void creerHistorique() {
         // Vide l'historique
         historique.removeAll();
 

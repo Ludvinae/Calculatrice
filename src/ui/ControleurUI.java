@@ -43,6 +43,7 @@ public class ControleurUI {
             }
             case "Reset" -> {
                 manager.effacerHistorique();
+                vue.creerHistorique();
             }
             case "Retour" -> {
                 vue.effacerDernier();
