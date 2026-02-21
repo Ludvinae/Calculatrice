@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.util.List;
 import java.awt.*;
 
+/**
+ * Construit l'UI et expose les methodes pour la manipuler
+ */
 public class Vue extends JFrame {
 
     private final int width = 490;
@@ -32,7 +35,7 @@ public class Vue extends JFrame {
 
         configurerFrame();
         initialiserUI();
-        ecouter();
+        //ecouter();
 
         // Ne pas ajouter de composants apres cette commande
         setVisible(true);
@@ -83,8 +86,30 @@ public class Vue extends JFrame {
         // Place le panel central et l'historique dans la frame
         add(panelCentral, BorderLayout.CENTER);
         add(scroll, BorderLayout.EAST);
+    }
 
+    public JButton[] getBoutons() {
+        return touches.getBoutons();
+    }
 
+    public void afficher(String texte) { affichage.afficher(texte); }
+
+    public void effacerAffichage() { affichage.effacerTout(); }
+
+    public void effacerDernier() {
+        affichage.effacer();
+    }
+
+    public void ajouterHistorique(String expr, String res) {
+        historique.ajouterCalcul(expr, res);
+    }
+
+    public void rafraichirHistorique() {
+        creerHistorique();
+    }
+
+    public String conversionTexteTouches(String texte) {
+        return touches.conversionEntree(texte);
     }
 
     private void ecouter() {
@@ -97,12 +122,7 @@ public class Vue extends JFrame {
                 String texteConverti = touches.conversionEntree(bouton.getText());
 
                 // Envoi le texte soit directement a l'affichage, soit au controleur Manager
-                if (texteConverti.equalsIgnoreCase("=")) envoiVersManager();
-                else if (texteConverti.equalsIgnoreCase("Retour")) effacerDerniereEntree();
-                else if (texteConverti.equalsIgnoreCase("Clear")) effacerEntrees();
-                else if (texteConverti.equalsIgnoreCase("Reset")) manager.effacerHistorique();
-                else if (texteConverti.equalsIgnoreCase("+/-")); // Cas a implementer
-                else afficherEntree(texteConverti);
+                gererEntree(texteConverti);
             });
         }
     }

@@ -7,6 +7,7 @@ import exception.OperateurInconnu;
 import historique.*;
 import scanner.Scanner;
 import sortie.Affichage;
+import ui.ControleurUI;
 import ui.Vue;
 import utils.ComposantsString;
 import utils.ComposantsValeur;
@@ -103,7 +104,8 @@ public class Manager {
     }
 
     public void calculatriceUI() {
-        new Vue(this);
+        Vue vue = new Vue(this);
+        new ControleurUI(vue, this);
     }
 
     public String faireCalculUI(String expression) {

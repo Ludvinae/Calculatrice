@@ -12,7 +12,7 @@ public class GestionEntrees {
     public void effacerTout() { entrees = new StringBuilder(); }
 
     public void effacerDernier() {
-        if (!entrees.isEmpty())
+        if (!estVide())
             entrees.deleteCharAt(entrees.length() - 1);
     }
 
