@@ -25,20 +25,28 @@ public class Vue extends JFrame {
 
     public Vue(Manager manager) {
         this.manager = manager;
-
         // Crée le theme
         theme = new Theme();
-
         // Cree une nouvelle instance de StringBuilder
         entrees = new StringBuilder();
 
+        configurerFrame();
+        initialiserUI();
+        ecouter();
+
+        // Ne pas ajouter de composants apres cette commande
+        setVisible(true);
+    }
+
+    private void configurerFrame() {
         setSize(width, height);
         setName("Calculatrice");
-
         // Permet de fermer le programme lorsque l'on ferme la fenetre de l'UI
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+    }
 
+    private void initialiserUI() {
         // Panneau central pour l'affichage et les touches
         JPanel panelCentral = new JPanel();
 
@@ -76,13 +84,10 @@ public class Vue extends JFrame {
         add(panelCentral, BorderLayout.CENTER);
         add(scroll, BorderLayout.EAST);
 
-        // Ne pas ajouter de composants apres cette commande
-        setVisible(true);
 
-        ecouter();
     }
 
-    public void ecouter() {
+    private void ecouter() {
         // Recupere la liste de boutons du panel touches
         JButton[] boutons = touches.getBoutons();
 
@@ -102,26 +107,54 @@ public class Vue extends JFrame {
         }
     }
 
+    private void gererEntree(String texte) {
+        switch (texte) {
+            case "=" -> envoiVersManager();
+            case "Retour" -> effacerDerniereEntree();
+            case "Clear" -> effacerEntrees();
+            case "Reset" -> {
+                manager.effacerHistorique();
+                creerHistorique();
+            }
+            case "+/-" -> changeSigne();
+            default -> afficherEntree(texte);
+        }
+    }
+
+    private void envoiVersManager() {
+        affichage.effacerTout();
+        transfertExpression(construitExpression());
+
+        // Efface l'expression en vue du prochain calcul
+        entrees = new StringBuilder();
+
+        // A décommenté quand la methode pour recuperer le dernier calcul sera implementée
+                    /*
+                    Calcul calcul = manager.dernierCalcul();
+                    String expression = calcul.getValeur1Db() + " " + calcul.getOperateurDb() + " " + calcul.getValeur2Db() + " =";
+                    String resultat = manager.formatResultat(calcul.getResultatDb());
+                    historique.ajouterCalcul(expression, resultat);
+                     */
+    }
+
     public void transfertExpression(String expression) {
         String resultat = manager.faireCalculUI(expression);
-        System.out.println(resultat);
         affichage.afficher(resultat);
         affichage.repaint();
     }
 
-    private void afficherEntree(String texte) {
-        if (entrees.isEmpty()) affichage.effacerTout();
-        affichage.afficher(texte);
-        entrees.append(texte);
+    private String construitExpression() {
+        return entrees.toString();
+    }
+
+    private void effacerDerniereEntree() {
+        affichage.effacer();
+        entrees.deleteCharAt(entrees.length() - 1);
     }
 
     private void effacerEntrees() {
         affichage.effacerTout();
         entrees = new StringBuilder();
-    }
-
-    private String construitExpression() {
-        return entrees.toString();
     }
 
     private void creerHistorique() {
@@ -140,26 +173,13 @@ public class Vue extends JFrame {
         historique.rafraichisHistorique();
     }
 
-    private void envoiVersManager() {
-        affichage.effacerTout();
-        transfertExpression(construitExpression());
-
-        // Efface l'expression en vue du prochain calcul
-        entrees = new StringBuilder();
-
-        // A décommenté quand la methode pour recuperer le dernier calcul sera implementée
-                    /*
-                    Calcul calcul = manager.dernierCalcul();
-                    String expression = calcul.getValeur1Db() + " " + calcul.getOperateurDb() + " " + calcul.getValeur2Db() + " =";
-                    String resultat = manager.formatResultat(calcul.getResultatDb());
-                    historique.ajouterCalcul(expression, resultat);
-                     */
-
+    private void changeSigne() {
+        // A implementer
     }
 
-    private void effacerDerniereEntree() {
-        affichage.effacer();
-        entrees.deleteCharAt(entrees.length() - 1);
+    private void afficherEntree(String texte) {
+        if (entrees.isEmpty()) affichage.effacerTout();
+        affichage.afficher(texte);
+        entrees.append(texte);
     }
-
 }
