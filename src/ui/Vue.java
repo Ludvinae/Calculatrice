@@ -1,7 +1,6 @@
 package ui;
 
 
-import controleur.Manager;
 import historique.Calcul;
 import ui.composants.AffichageUI;
 import ui.composants.Historique;
@@ -10,6 +9,8 @@ import ui.composants.Touches;
 import javax.swing.*;
 import java.util.List;
 import java.awt.*;
+
+import static controleur.Manager.formatResultat;
 
 /**
  * Construit l'UI et expose les methodes pour la manipuler
@@ -20,16 +21,12 @@ public class Vue extends JFrame {
     private final int HEIGHT = 525;
     private final Theme theme;
 
-    // a enlever quand refactor creer historique
-    private final Manager manager;
-
     private Touches touches;
     private AffichageUI affichage;
     private Historique historique;
 
 
-    public Vue(Manager manager) {
-        this.manager = manager;
+    public Vue() {
         // Crée le theme
         theme = new Theme();
 
@@ -73,9 +70,8 @@ public class Vue extends JFrame {
         panelCentral.add(touches, BorderLayout.CENTER);
 
         // Panneau de l'historique
-        historique = new Historique(theme);
+        historique = new Historique();
         historique.setBackground(theme.couleurFond());
-        creerHistorique();
 
         // Place l'historique dans un composant JScroll pour pouvoir faire defiler les calculs si ils sont nombreux
         JScrollPane scroll = new JScrollPane(historique);
@@ -104,8 +100,8 @@ public class Vue extends JFrame {
         affichage.effacer();
     }
 
-    public void ajouterHistorique(String expr, String res) {
-        historique.ajouterCalcul(expr, res);
+    public void ajouterHistorique(String expression, String resultat) {
+        historique.ajouterCalcul(expression, resultat, theme);
     }
 
     public void rafraichirHistorique() {
@@ -116,18 +112,17 @@ public class Vue extends JFrame {
         return touches.conversionEntree(texte);
     }
 
-    public void creerHistorique() {
+    public void creerHistorique(List<Calcul> calculs) {
         // Vide l'historique
         historique.removeAll();
 
-        List<Calcul> calculs = manager.getCalculs();
         for (Calcul calcul : calculs) {
 
             // Ideallement, creer des methodes dans la Classe Calcul pour recuperer directement le bon formatage
             String expression = calcul.getValeur1Db() + " " + calcul.getOperateurDb() + " " + calcul.getValeur2Db() + " =";
-            String resultat = manager.formatResultat(calcul.getResultatDb());
+            String resultat = formatResultat(calcul.getResultatDb());
 
-            historique.ajouterCalcul(expression, resultat);
+            historique.ajouterCalcul(expression, resultat, theme);
         }
         historique.rafraichisHistorique();
     }
@@ -135,5 +130,7 @@ public class Vue extends JFrame {
     public void changeSigne() {
         // A implementer
     }
+
+
 
 }

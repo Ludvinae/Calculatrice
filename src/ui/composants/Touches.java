@@ -16,23 +16,20 @@ public class Touches extends JPanel {
     };
 
     private final JButton[] boutons = new JButton[texteBoutons.length];
-    private final Theme theme;
 
     public Touches(Theme theme) {
-        this.theme = theme;
-
         setOpaque(false);
         setLayout(new GridLayout(5, 4, 5, 5));
         setBackground(theme.couleurFond());
 
-        arrangement();
+        arrangement(theme);
     }
 
     public JButton[] getBoutons() {
         return boutons;
     }
 
-    private void arrangement() {
+    private void arrangement(Theme theme) {
         for  (int i = 0; i < texteBoutons.length; i++) {
             // Récupere le texte a afficher sur le bouton et crée un bouton avec ce texte
             String texte = texteBoutons[i];

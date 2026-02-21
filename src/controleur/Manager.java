@@ -7,7 +7,6 @@ import historique.*;
 import scanner.Scanner;
 import sortie.Affichage;
 import ui.ControleurUI;
-import ui.Vue;
 import utils.ComposantsString;
 import utils.ComposantsValeur;
 
@@ -105,8 +104,7 @@ public class Manager {
     }
 
     public void calculatriceUI() {
-        Vue vue = new Vue(this);
-        new ControleurUI(vue, this);
+        new ControleurUI(this);
     }
 
     public String faireCalculUI(String expression) {
@@ -123,7 +121,12 @@ public class Manager {
         }
     }
 
-    public String formatResultat(double valeur) {
+    /**
+     * Methode utilisée pour formater correctement les resultats en String, en evitant d'avoir une décimale si superflue
+     * @param valeur
+     * @return
+     */
+    public static String formatResultat(double valeur) {
         DecimalFormat df = new DecimalFormat("0.########");
         return df.format(valeur);
     }

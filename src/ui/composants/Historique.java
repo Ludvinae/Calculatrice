@@ -1,20 +1,18 @@
 package ui.composants;
 
+
 import ui.Theme;
 
 import javax.swing.*;
 
 public class Historique extends JPanel {
 
-    private final Theme theme;
-
-    public Historique(Theme theme) {
-        this.theme = theme;
+    public Historique() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentX(RIGHT_ALIGNMENT);
     }
 
-    public void ajouterCalcul(String expression, String resultat) {
+    public void ajouterCalcul(String expression, String resultat, Theme theme) {
         ComposantCalcul calcul = new ComposantCalcul(expression, resultat, theme);
 
         // Ajoute le dernier calcul en haut

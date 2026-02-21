@@ -13,11 +13,12 @@ public class ControleurUI {
     private final Manager manager;
     private final GestionEntrees entrees;
 
-    public ControleurUI(Vue vue, Manager manager) {
-        this.vue = vue;
+    public ControleurUI(Manager manager) {
+        this.vue = new Vue();
         this.manager = manager;
         this.entrees = new GestionEntrees();
 
+        vue.creerHistorique(manager.getCalculs());
         initialiserListeners();
     }
 
@@ -43,7 +44,7 @@ public class ControleurUI {
             }
             case "Reset" -> {
                 manager.effacerHistorique();
-                vue.creerHistorique();
+                vue.creerHistorique(manager.getCalculs());
             }
             case "Retour" -> {
                 vue.effacerDernier();
@@ -71,5 +72,6 @@ public class ControleurUI {
 
         entrees.effacerTout();
     }
+
 }
 
