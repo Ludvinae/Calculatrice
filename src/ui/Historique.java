@@ -4,16 +4,19 @@ import javax.swing.*;
 
 public class Historique extends JPanel {
 
-    private JPanel[] calculs;
-
     public Historique() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
-    private void ajouterCalculs() {
-        for  (JPanel calcul : calculs) {
-            add(calcul);
-        }
+    public void ajouterCalcul(String expression, String resultat) {
+        ComposantCalcul calcul = new ComposantCalcul(expression, resultat);
+
+        // Ajoute le dernier calcul en haut
+        add(calcul, 0);
+
+        // Rafraichis l'affichage
+        revalidate();
+        repaint();
     }
 
 

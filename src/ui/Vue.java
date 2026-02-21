@@ -2,8 +2,10 @@ package ui;
 
 
 import controleur.Manager;
+import historique.Calcul;
 
 import javax.swing.*;
+import java.util.List;
 import java.awt.*;
 
 public class Vue extends JFrame {
@@ -48,6 +50,7 @@ public class Vue extends JFrame {
         // Panneau de l'historique
         historique = new Historique();
         setBackground(Color.LIGHT_GRAY);
+        creerHistorique();
         add(historique, BorderLayout.EAST);
 
         // Ne pas ajouter de composants apres cette commande
@@ -112,4 +115,15 @@ public class Vue extends JFrame {
         return entrees.toString();
     }
 
+    private void creerHistorique() {
+        List<Calcul> calculs = manager.getCalculs();
+        for (Calcul calcul : calculs) {
+
+            // Ideallement, creer des methodes dans la Classe Calcul pour recuperer directement le bon formatage
+            String expression = calcul.getValeur1Db() + " " + calcul.getOperateurDb() + " " + calcul.getValeur2Db() + " =";
+            String resultat = manager.formatResultat(calcul.getResultatDb());
+
+            historique.ajouterCalcul(expression, resultat);
+        }
+    }
 }

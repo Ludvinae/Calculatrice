@@ -3,9 +3,9 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
-public class composantCalcul extends JPanel {
+public class ComposantCalcul extends JPanel {
 
-    public composantCalcul(String expression, String resultat) {
+    public ComposantCalcul(String expression, String resultat) {
         setLayout(new BorderLayout());
 
         JLabel expressionLabel = new JLabel(expression);
