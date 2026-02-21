@@ -115,6 +115,7 @@ public class Vue extends JFrame {
                     // Cas a implementer
                 }
                 else {
+                    if (entrees.isEmpty()) affichage.effacerTout();
                     affichage.afficher(texteConverti);
                     stockerEntrees(texteConverti);
                 }
