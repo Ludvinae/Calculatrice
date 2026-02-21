@@ -11,6 +11,7 @@ import ui.Vue;
 import utils.ComposantsString;
 import utils.ComposantsValeur;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 // La class controleur.Manager sert de contrôleur pour la calculatrice et va gérer le programme dans son ensemble.
@@ -117,10 +118,7 @@ public class Manager {
     }
 
     public String formatResultat(double value) {
-        if (value == (long) value) {
-            return String.valueOf((long) value);
-        } else {
-            return String.valueOf(value);
-        }
+        DecimalFormat df = new DecimalFormat("0.########");
+        return df.format(value);
     }
 }
