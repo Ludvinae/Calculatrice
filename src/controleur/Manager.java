@@ -123,8 +123,8 @@ public class Manager {
         }
     }
 
-    public String formatResultat(double value) {
+    public String formatResultat(double valeur) {
         DecimalFormat df = new DecimalFormat("0.########");
-        return df.format(value);
+        return df.format(valeur);
     }
 }
