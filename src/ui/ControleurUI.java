@@ -70,7 +70,10 @@ public class ControleurUI {
         vue.effacerAffichage();
         vue.afficher(resultat);
         System.out.println(manager.dernierCalcul().getValeur1Db() + " | " + manager.dernierCalcul().getValeur2Db());
-        vue.ajouterHistorique(manager.dernierCalcul());
+        //vue.ajouterHistorique(manager.dernierCalcul());
+        //vue.rafraichirHistorique();
+        // temp fix
+        vue.ajouterHistorique(manager.getCalculs().get(manager.getCalculs().size() - 1));
         vue.rafraichirHistorique();
 
         entrees.effacerTout();
