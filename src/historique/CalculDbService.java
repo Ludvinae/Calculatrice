@@ -6,14 +6,9 @@ public class CalculDbService {
 
     private final CalculDAO dao;
 
-    public CalculDbService(CalculDAO dao) {
-        this.dao = dao;
-    }
-
-    public void CreationHistorique() {
-        BaseDonneeInit.init();
-        CalculDAO dao = new CalculDAOImp();
-        CalculDbService  serviceDB = new CalculDbService(dao);
+    public CalculDbService() {
+        BaseDonneeInit.init(); // crée la table si besoin
+        dao = new CalculDAOImp();
     }
 
     public void addCalcul(double valeur1Db, String operateurDb, double valeur2Db, double resultatDb ) {
@@ -24,6 +19,9 @@ public class CalculDbService {
         return dao.findAll();
     }
 
+    public Calcul dernierCalcul() {
+        return dao.findLast();
+    }
 
     public void deleteCalcul() {
         dao.deleteAll();

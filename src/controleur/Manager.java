@@ -18,12 +18,12 @@ import static scanner.VerifierExpression.verifierExpression;
 // La class controleur.Manager sert de contrôleur pour la calculatrice et va gérer le programme dans son ensemble.
 public class Manager {
 
-    private Scanner scanner;
+    private final Scanner scanner;
     private CalculDbService serviceDB;
 
     public Manager() {
         scanner = new Scanner();
-        gestionDB();
+        serviceDB = new CalculDbService();
     }
 
     /**
@@ -67,19 +67,12 @@ public class Manager {
         display.afficher();
     }
 
-    private void gestionDB() {
-        BaseDonneeInit.init(); // crée la table si besoin
-
-        CalculDAO dao = new CalculDAOImp();
-        serviceDB = new CalculDbService(dao);
-    }
-
     public List<Calcul> getCalculs() {
         return serviceDB.getAllCalculs();
     }
 
     public Calcul dernierCalcul() {
-        return null;
+        return serviceDB.dernierCalcul();
     }
 
     public void effacerHistorique() {
