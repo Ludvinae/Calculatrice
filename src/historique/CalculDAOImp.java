@@ -49,6 +49,7 @@ public class CalculDAOImp implements CalculDAO{
         return calculs;
     }
 
+    @Override
     public Calcul findLast() {
         String sql = "SELECT * FROM calculs ORDER BY id DESC LIMIT 1";
         Calcul calcul = null;
