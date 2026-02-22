@@ -18,7 +18,7 @@ public class Historique extends JPanel {
         // Ajoute le dernier calcul en haut
         add(calcul, 0);
 
-        rafraichisHistorique();
+        //rafraichisHistorique();
     }
 
     /**

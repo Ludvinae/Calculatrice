@@ -10,10 +10,10 @@ import ui.ControleurUI;
 import utils.ComposantsString;
 import utils.ComposantsValeur;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import static scanner.VerifierExpression.verifierExpression;
+import static utils.FormatDoubleVersString.formatResultat;
 
 // La class controleur.Manager sert de contrôleur pour la calculatrice et va gérer le programme dans son ensemble.
 public class Manager {
@@ -114,13 +114,4 @@ public class Manager {
         }
     }
 
-    /**
-     * Methode utilisée pour formater correctement les resultats en String, en evitant d'avoir une décimale si superflue
-     * @param valeur
-     * @return
-     */
-    public static String formatResultat(double valeur) {
-        DecimalFormat df = new DecimalFormat("0.########");
-        return df.format(valeur);
-    }
 }

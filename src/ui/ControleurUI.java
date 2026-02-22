@@ -69,7 +69,8 @@ public class ControleurUI {
 
         vue.effacerAffichage();
         vue.afficher(resultat);
-        vue.ajouterHistorique(expression + " =", resultat);
+        vue.ajouterHistorique(manager.dernierCalcul());
+        vue.rafraichirHistorique();
 
         entrees.effacerTout();
     }

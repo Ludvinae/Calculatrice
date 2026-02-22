@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.util.List;
 import java.awt.*;
 
-import static controleur.Manager.formatResultat;
+import static utils.FormatDoubleVersString.formatResultat;
 
 /**
  * Construit l'UI et expose les methodes pour la manipuler
@@ -100,12 +100,18 @@ public class Vue extends JFrame {
         affichage.effacer();
     }
 
-    public void ajouterHistorique(String expression, String resultat) {
-        historique.ajouterCalcul(expression, resultat, theme);
-    }
-
     public void rafraichirHistorique() {
         historique.rafraichisHistorique();
+    }
+
+    public void ajouterHistorique(Calcul calcul) {
+        String valeur1 = formatResultat(calcul.getValeur1Db());
+        String valeur2 = formatResultat(calcul.getValeur2Db());
+
+        String expression = valeur1 + " " + calcul.getOperateurDb() + " " + valeur2 + " =";
+        String resultat = formatResultat(calcul.getResultatDb());
+
+        historique.ajouterCalcul(expression, resultat, theme);
     }
 
     public String conversionTexteTouches(String texte) {
@@ -117,12 +123,7 @@ public class Vue extends JFrame {
         historique.removeAll();
 
         for (Calcul calcul : calculs) {
-
-            // Ideallement, creer des methodes dans la Classe Calcul pour recuperer directement le bon formatage
-            String expression = calcul.getValeur1Db() + " " + calcul.getOperateurDb() + " " + calcul.getValeur2Db() + " =";
-            String resultat = formatResultat(calcul.getResultatDb());
-
-            historique.ajouterCalcul(expression, resultat, theme);
+            ajouterHistorique(calcul);
         }
         historique.rafraichisHistorique();
     }
@@ -130,7 +131,5 @@ public class Vue extends JFrame {
     public void changeSigne() {
         // A implementer
     }
-
-
 
 }
