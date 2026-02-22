@@ -66,14 +66,10 @@ public class ControleurUI {
 
         String expression = entrees.construire();
         String resultat = manager.faireCalculUI(expression);
-        System.out.println(expression + " | " + resultat);
+
         vue.effacerAffichage();
         vue.afficher(resultat);
-        System.out.println(manager.dernierCalcul().getValeur1Db() + " | " + manager.dernierCalcul().getValeur2Db());
-        //vue.ajouterHistorique(manager.dernierCalcul());
-        //vue.rafraichirHistorique();
-        // temp fix
-        vue.ajouterHistorique(manager.getCalculs().get(manager.getCalculs().size() - 1));
+        vue.ajouterHistorique(manager.dernierCalcul());
         vue.rafraichirHistorique();
 
         entrees.effacerTout();

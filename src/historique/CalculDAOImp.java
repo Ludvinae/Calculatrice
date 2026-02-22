@@ -61,10 +61,10 @@ public class CalculDAOImp implements CalculDAO{
             if (rs.next()) {
                 calcul = new Calcul(
                         rs.getInt("id"),
-                        rs.getInt("valeur1Db"),
+                        rs.getDouble("valeur1Db"),
                         rs.getString("operateurDb"),
-                        rs.getInt("valeur2Db"),
-                        rs.getInt("resultatDb")
+                        rs.getDouble("valeur2Db"),
+                        rs.getDouble("resultatDb")
                 );
             }
 
