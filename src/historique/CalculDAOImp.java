@@ -49,6 +49,32 @@ public class CalculDAOImp implements CalculDAO{
         return calculs;
     }
 
+    public Calcul findLast() {
+        String sql = "SELECT * FROM calculs ORDER BY id DESC LIMIT 1";
+        Calcul calcul = null;
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                calcul = new Calcul(
+                        rs.getInt("id"),
+                        rs.getInt("valeur1Db"),
+                        rs.getString("operateurDb"),
+                        rs.getInt("valeur2Db"),
+                        rs.getInt("resultatDb")
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return calcul;
+    }
+
+
     @Override
     public void deleteAll() {
         String sql = "DELETE FROM calculs";
