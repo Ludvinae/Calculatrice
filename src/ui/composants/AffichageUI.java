@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class AffichageUI extends JPanel {
 
-    JLabel label = new JLabel();
+    JLabel label = new JLabel("");
 
     public AffichageUI() {
         add(label);

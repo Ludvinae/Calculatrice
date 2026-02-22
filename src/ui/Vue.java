@@ -17,7 +17,7 @@ import static utils.FormatDoubleVersString.formatResultat;
  */
 public class Vue extends JFrame {
 
-    private final int WIDTH = 490;
+    private final int WIDTH = 540;
     private final int HEIGHT = 525;
     private final Theme theme;
 
@@ -75,7 +75,7 @@ public class Vue extends JFrame {
 
         // Place l'historique dans un composant JScroll pour pouvoir faire defiler les calculs si ils sont nombreux
         JScrollPane scroll = new JScrollPane(historique);
-        scroll.setPreferredSize(new Dimension(150, 0));
+        scroll.setPreferredSize(new Dimension(200, 0));
         scroll.getVerticalScrollBar().setUnitIncrement(10);
         scroll.setViewportView(historique);
 
