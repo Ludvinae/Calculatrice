@@ -1,5 +1,6 @@
 package historique;
 
+// Class qui va servir de référence à l'entrée du tableau en base de donnée.
 public class Calcul {
     private int id;
     private double valeur1Db;
@@ -7,6 +8,14 @@ public class Calcul {
     private double valeur2Db;
     private double resultatDb;
 
+    /**
+     * Constructeur de l'Objet Calcul avec id.
+     * @param : id
+     * @param : valeur1Db
+     * @param : operateurDb
+     * @param : valeur2Db
+     * @param : resultatDb
+     */
     public Calcul(int id, double valeur1Db, String operateurDb, double valeur2Db, double resultatDb) {
         this.id = id;
         this.valeur1Db = valeur1Db;
@@ -15,6 +24,13 @@ public class Calcul {
         this.resultatDb = resultatDb;
     }
 
+    /**
+     * Constructeur de l'objet Calcul sans l'id.
+     * @param : valeur1Db
+     * @param : operateurDb
+     * @param : valeur2Db
+     * @param : resultatDb
+     */
     public Calcul(double valeur1Db, String operateurDb, double valeur2Db, double resultatDb) {
         this.valeur1Db = valeur1Db;
         this.operateurDb = operateurDb;
@@ -22,6 +38,7 @@ public class Calcul {
         this.resultatDb = resultatDb;
     }
 
+    // getter et setter des paramètres de l'objet Calcul.
     public double getResultatDb() {
         return resultatDb;
     }
