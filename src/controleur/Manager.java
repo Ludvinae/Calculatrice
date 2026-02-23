@@ -68,7 +68,7 @@ public class Manager {
     }
 
     public List<Calcul> getCalculs() {
-        return serviceDB.getAllCalculs();
+        return serviceDB.tousLesCalculs();
     }
 
     public Calcul dernierCalcul() {
@@ -76,7 +76,7 @@ public class Manager {
     }
 
     public void effacerHistorique() {
-        serviceDB.deleteCalcul();
+        serviceDB.effacerCalculs();
     }
 
     /**
@@ -89,7 +89,7 @@ public class Manager {
         try {
             double resultat = appelCalculer(composant);
             appelAffichage(resultat, composant);
-            serviceDB.addCalcul(composant.valeur1(), composant.operateur(), composant.valeur2(), resultat);
+            serviceDB.ajoutCalcul(composant.valeur1(), composant.operateur(), composant.valeur2(), resultat);
         }
         catch(DivisionParZero | OperateurInconnu e) {
             System.out.println(e.getMessage());
@@ -106,7 +106,7 @@ public class Manager {
             verifierExpression(expression);
             ComposantsValeur composant = interprete(expression);
             double resultat = appelCalculer(composant);
-            serviceDB.addCalcul(composant.valeur1(), composant.operateur(), composant.valeur2(), resultat);
+            serviceDB.ajoutCalcul(composant.valeur1(), composant.operateur(), composant.valeur2(), resultat);
             return formatResultat(resultat);
         }
         catch (OperateurInconnu | AlaisException | ValeurNonNumerique | FormatIncorrect | DivisionParZero e){

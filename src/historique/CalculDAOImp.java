@@ -9,7 +9,7 @@ public class CalculDAOImp implements CalculDAO{
     private final String url = "jdbc:sqlite:calcul.db";
 
     @Override
-    public void insert(Calcul calcul) {
+    public void insertion(Calcul calcul) {
         String sql = "INSERT INTO calculs(valeur1Db, operateurDb, valeur2Db, resultatDb) VALUES(?,?,?,?)";
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -26,7 +26,7 @@ public class CalculDAOImp implements CalculDAO{
     }
 
     @Override
-    public List<Calcul> findAll() {
+    public List<Calcul> rechercheTous() {
         String sql = "SELECT * FROM calculs";
         List<Calcul> calculs = new ArrayList<>();
 
@@ -50,7 +50,7 @@ public class CalculDAOImp implements CalculDAO{
     }
 
     @Override
-    public Calcul findLast() {
+    public Calcul rechercheDernier() {
         String sql = "SELECT * FROM calculs ORDER BY id DESC LIMIT 1";
         Calcul calcul = null;
 
@@ -77,7 +77,7 @@ public class CalculDAOImp implements CalculDAO{
 
 
     @Override
-    public void deleteAll() {
+    public void effacerTout() {
         String sql = "DELETE FROM calculs";
 
         try (Connection conn = DriverManager.getConnection(url);
