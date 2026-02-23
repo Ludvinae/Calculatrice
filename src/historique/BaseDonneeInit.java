@@ -9,7 +9,7 @@ public class BaseDonneeInit {
     /**
      * Méthod qui va vérifier si la base de donnée existe, si non elle va l'initialiser.
      */
-    public static void init() {
+    protected static void init() {
         String sql = """
                 CREATE TABLE IF NOT EXISTS calculs (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
