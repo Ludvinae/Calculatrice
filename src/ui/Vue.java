@@ -37,6 +37,9 @@ public class Vue extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Configuration de la frame principale
+     */
     private void configurerFrame() {
         setSize(WIDTH, HEIGHT);
         setResizable(false);
@@ -49,6 +52,11 @@ public class Vue extends JFrame {
         setLayout(new BorderLayout());
     }
 
+    /**
+     * Configuration des panneaux qui composent la fenetre principale
+     * La panneau central comprends la partie gauche de la calculatrice (touches + affichage)
+     * L'historique occupe la partie droite du frame
+     */
     private void initialiserUI() {
         // Panneau central pour l'affichage et les touches
         JPanel panelCentral = new JPanel();
@@ -88,6 +96,10 @@ public class Vue extends JFrame {
         add(scroll, BorderLayout.EAST);
     }
 
+    /**
+     *
+     * @return Tableau de boutons
+     */
     public JButton[] getBoutons() {
         return touches.getBoutons();
     }

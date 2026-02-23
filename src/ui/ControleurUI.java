@@ -71,7 +71,7 @@ public class ControleurUI {
 
     /**
      * Envoi l'expression saisi au Manager pour recuperer le résultat
-     * Puis fait parevenir le résultat a l'affichage
+     * Puis fait parvenir le résultat a l'affichage
      */
     private void calculer() {
         String expression = entrees.construire();
