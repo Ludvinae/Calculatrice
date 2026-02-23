@@ -97,33 +97,58 @@ public class Vue extends JFrame {
     }
 
     /**
-     *
+     * Expose la méthode getBoutons de la classe Touches
      * @return Tableau de boutons
      */
     public JButton[] getBoutons() {
         return touches.getBoutons();
     }
 
+    /**
+     * Expose la méthode conversionEntree de la classe Touche
+     * @param texte: le texte issu des touches (avec emojis)
+     * @return le texte des boutons converti (sans emojis)
+     */
     public String conversionTexteTouches(String texte) {
         return touches.conversionEntree(texte);
     }
 
+    /**
+     * Une méthode pour changer le signe d'une valeur (non implementée)
+     */
     public void changeSigne() {
         // A implementer
     }
 
+    /**
+     * Expose la méthode afficher de la classe Affichage
+     * @param texte: le texte à afficher
+     */
     public void afficher(String texte) { affichage.afficher(texte); }
 
+    /**
+     * Expose la méthode effacerTout de la classe Affichage
+     */
     public void effacerAffichage() { affichage.effacerTout(); }
 
+    /**
+     * Expose la méthode effacerDernier de la classe Affichage
+     */
     public void effacerDernier() {
         affichage.effacer();
     }
 
+    /**
+     * Expose la méthode rafraichirHistorique de la classe Historique
+     */
     public void rafraichirHistorique() {
         historique.rafraichisHistorique();
     }
 
+    /**
+     * Extrait les informations d'un objet Calcul afin de les afficher en haut de l'historique
+     * @param calcul: objet Calcul
+     */
     public void ajouterHistorique(Calcul calcul) {
         String valeur1 = formatResultat(calcul.getValeur1Db());
         String valeur2 = formatResultat(calcul.getValeur2Db());
@@ -134,6 +159,10 @@ public class Vue extends JFrame {
         historique.ajouterCalcul(expression, resultat, theme);
     }
 
+    /**
+     * Récupere tout l'historique de calculs et les affichent, les plus recents en haut
+     * @param calculs: liste d'objets Calcul
+     */
     public void creerHistorique(List<Calcul> calculs) {
         // Vide l'historique
         historique.removeAll();
