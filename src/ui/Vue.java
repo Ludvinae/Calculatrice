@@ -92,6 +92,14 @@ public class Vue extends JFrame {
         return touches.getBoutons();
     }
 
+    public String conversionTexteTouches(String texte) {
+        return touches.conversionEntree(texte);
+    }
+
+    public void changeSigne() {
+        // A implementer
+    }
+
     public void afficher(String texte) { affichage.afficher(texte); }
 
     public void effacerAffichage() { affichage.effacerTout(); }
@@ -114,10 +122,6 @@ public class Vue extends JFrame {
         historique.ajouterCalcul(expression, resultat, theme);
     }
 
-    public String conversionTexteTouches(String texte) {
-        return touches.conversionEntree(texte);
-    }
-
     public void creerHistorique(List<Calcul> calculs) {
         // Vide l'historique
         historique.removeAll();
@@ -127,9 +131,4 @@ public class Vue extends JFrame {
         }
         historique.rafraichisHistorique();
     }
-
-    public void changeSigne() {
-        // A implementer
-    }
-
 }

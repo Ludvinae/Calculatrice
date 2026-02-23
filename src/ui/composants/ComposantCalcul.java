@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class ComposantCalcul extends JPanel {
 
-    public ComposantCalcul(String expression, String resultat, Theme theme) {
+    protected ComposantCalcul(String expression, String resultat, Theme theme) {
         setLayout(new BorderLayout());
         setBackground(theme.couleurFond());
 
