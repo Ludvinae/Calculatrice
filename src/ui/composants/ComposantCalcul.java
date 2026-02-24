@@ -7,6 +7,12 @@ import java.awt.*;
 
 public class ComposantCalcul extends JPanel {
 
+    /**
+     * Permet de construire un panel composé de deux labels
+     * @param expression: valeurs affichées dans le label du haut
+     * @param resultat: valeur affichée dans le label du bas
+     * @param theme: references de couleurs
+     */
     protected ComposantCalcul(String expression, String resultat, Theme theme) {
         setLayout(new BorderLayout());
         setBackground(theme.couleurFond());
