@@ -12,6 +12,9 @@ public class Historique extends JPanel {
         setAlignmentX(RIGHT_ALIGNMENT);
     }
 
+	/**
+	*	Appelle la création d'un nouveau panneau ComposantCalcul puis l'ajoute en haut du panel Historique
+	*/
     public void ajouterCalcul(String expression, String resultat, Theme theme) {
         ComposantCalcul calcul = new ComposantCalcul(expression, resultat, theme);
 

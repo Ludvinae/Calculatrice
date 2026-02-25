@@ -2,6 +2,9 @@ package ui;
 
 import java.awt.*;
 
+/**
+* Record qui reférence les couleurs utilisées par l'interface
+*/
 public record Theme(Color couleurFond, Color couleurTouches, Color couleurAffichage, Color couleurPolice,
                     Color couleurSecondaire) {
 
